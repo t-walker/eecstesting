@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  prompt: MyString
+  possible1: MyString
+  possible2: MyString
+  possible3: MyString
+  possible4: MyString
+  correct: MyString
+
+two:
+  prompt: MyString
+  possible1: MyString
+  possible2: MyString
+  possible3: MyString
+  possible4: MyString
+  correct: MyString

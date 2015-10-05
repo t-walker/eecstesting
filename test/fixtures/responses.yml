@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  test_id: 
+  response_data: MyString
+  correct: false
+
+two:
+  user_id: 
+  test_id: 
+  response_data: MyString
+  correct: false

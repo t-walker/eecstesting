@@ -1,0 +1,20 @@
+<h1>Test Questions</h1>
+<table style="color:black; padding: 5px;">
+<% @questions.each do |q| %>
+  <tr>
+    <th><%= q.prompt %></th>
+    <% if q.possible1 %>
+    <th><%= q.possible1 %></th>
+    <% end %>
+    <% if q.possible2 %>
+    <th><%= q.possible2 %></th>
+    <% end %>
+    <% if q.possible3 %>
+    <th><%= q.possible3 %></th>
+    <% end %>
+    <% if q.possible4 %>
+    <th><%= q.possible4 %></th>
+    <% end %>
+  </tr>
+<% end %>
+</table>

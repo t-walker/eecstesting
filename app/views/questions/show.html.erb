@@ -1,0 +1,27 @@
+<h1>Question</h1>
+    <h3><%= @question.prompt %></h3>
+      <% if @question.possible1 %>
+    <p>A)
+        <%= @question.possible1 %>
+    </p>
+      <% end %>
+      <% if @question.possible2 %>
+    <p>B)
+        <%= @question.possible2 %>
+    </p>
+      <% end %>
+      <% if @question.possible3 %>
+    <p>C)
+        <%= @question.possible3 %>
+    </p>
+      <% end %>
+      <% if @question.possible4 %>
+    <p>D)
+        <%= @question.possible4 %>
+    </p>
+      <% end %>
+      <% if @question.correct %>
+    <p>Correct:
+        <%= @question.correct %>
+    </p>
+      <% end %>

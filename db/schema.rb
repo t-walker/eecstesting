@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151005225348) do
+ActiveRecord::Schema.define(version: 20151006050711) do
 
   create_table "questions", force: :cascade do |t|
     t.string   "prompt"
@@ -37,15 +37,6 @@ ActiveRecord::Schema.define(version: 20151005225348) do
   add_index "responses", ["test_id"], name: "index_responses_on_test_id"
   add_index "responses", ["user_id"], name: "index_responses_on_user_id"
 
-  create_table "tests", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "score"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "tests", ["user_id"], name: "index_tests_on_user_id"
-
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -66,5 +57,14 @@ ActiveRecord::Schema.define(version: 20151005225348) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "usertests", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "usertests", ["user_id"], name: "index_usertests_on_user_id"
 
 end

@@ -1,0 +1,10 @@
+<%= form_for(@usertest) do |f| %>
+  <% @questions.each do |q| %>
+  <%= q.prompt %>
+    <%= f.fields_for(:response) do |r| %>
+      <%= r.text_field :response_data %>
+    <% end %>
+    <br />
+  <% end %>
+  <%= f.submit %>
+<% end %>

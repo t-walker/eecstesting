@@ -14,7 +14,17 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question.new(question_params)
+    @question = Question.new(question_params)
+
+    respond_to do |format|
+      if @question.save
+        format.html { redirect_to @question, notice: 'Question was successfully created.' }
+        format.json { render :show, status: :created, location: @question }
+      else
+        format.html { render :new }
+        format.json { render json: @question.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def edit
@@ -49,7 +59,7 @@ private
   def set_user
     if user_signed_in?
       @user = current_user
-    end 
+    end
   end
 
   def question_params

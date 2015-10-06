@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: {registrations: "users/registrations"}
   resources :responses
   resources :questions
   resources :usertests
-  devise_for :users, controllers: {registrations: "users/registrations"}
+
+  get 'questions/index'
+  get 'questions/show'
+  get 'questions/new'
+  get 'questions/edit'
+  get 'questions/update'
+  get 'questions/destroy'
 
   root 'home#index'
 end

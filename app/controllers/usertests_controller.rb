@@ -1,5 +1,5 @@
-class TestsController < ApplicationController
-  before_action :set_test, only: [:show, :edit, :update, :destroy]
+class UserTestsController < ApplicationController
+  before_action :set_test, only: [:show, :create, :edit, :update, :destroy]
   before_action :set_user
 
   def index
@@ -12,6 +12,7 @@ class TestsController < ApplicationController
 
   def new
     @test = Test.new
+    @questions = Question.all
   end
 
   def create
@@ -54,6 +55,6 @@ private
   end
 
   def test_params
-    params.require(:test).permit(:prompt, :possible1, :possible2, :possible3, :possible4, :correct)
+    params.require(:test).permit()
   end
 end

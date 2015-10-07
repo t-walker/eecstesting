@@ -1,12 +1,10 @@
-<div class="row">
-  <h6><%= question.prompt %></h6>
-  <% if question.question_type == "shortans" %>
-    <%= render 'responses/shortans',  question:  question, response: response %>
-  <% elsif question.question_type == "longans" %>
-    <%= render 'responses/longans',  question:  question, response: response %>
-  <% elsif question.question_type == "multchoice" %>
-    <%= render 'responses/multchoice',  question: question, response: response %>
-  <% elsif question.question_type == "truefalse" %>
-    <%= render 'responses/truefalse',  question:  question, response: response %>
-  <% end %>
-</div>
+<h4><%= question.prompt %>?</h4>
+<% if question.question_type == "shortans" %>
+  <%= render 'responses/shortans',  question:  question, response: response %>
+<% elsif question.question_type == "longans" %>
+  <%= render 'responses/longans',  question:  question, response: response %>
+<% elsif question.question_type == "multchoice" %>
+  <%= render 'responses/multchoice',  question: question, response: response %>
+<% elsif question.question_type == "truefalse" %>
+  <%= render 'responses/truefalse',  question:  question, response: response %>
+<% end %>

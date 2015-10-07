@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151006050711) do
+ActiveRecord::Schema.define(version: 20151007042633) do
 
   create_table "questions", force: :cascade do |t|
     t.string   "prompt"
@@ -27,15 +27,19 @@ ActiveRecord::Schema.define(version: 20151006050711) do
 
   create_table "responses", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "test_id"
+    t.integer  "usertest_id"
     t.string   "response_data"
     t.boolean  "correct"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "question_id_id"
+    t.integer  "question_id"
   end
 
-  add_index "responses", ["test_id"], name: "index_responses_on_test_id"
+  add_index "responses", ["question_id"], name: "index_responses_on_question_id"
+  add_index "responses", ["question_id_id"], name: "index_responses_on_question_id_id"
   add_index "responses", ["user_id"], name: "index_responses_on_user_id"
+  add_index "responses", ["usertest_id"], name: "index_responses_on_usertest_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

@@ -13,11 +13,11 @@ class UsertestsController < ApplicationController
   def new
     @usertest = Usertest.new
     @questions = Question.all
+    @usertest_responses = @usertest.responses.build
   end
 
   def create
     @usertest = Usertest.new(usertest_params)
-
     respond_to do |format|
       if @usertest.save
         format.html { redirect_to @usertest, notice: 'Usertest was successfully created.' }
@@ -65,6 +65,6 @@ private
   end
 
   def usertest_params
-    params.require(:usertest).permit(usertests_categories_attributes[:response_data])
+    params.require(:usertest).permit(:user_id, :responses_attributes => [:response_data, :question_id])
   end
 end

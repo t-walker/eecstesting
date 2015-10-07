@@ -1,8 +1,11 @@
 <%= form_for(@usertest) do |f| %>
   <% @questions.each do |q| %>
   <%= q.prompt %>
-    <%= f.fields_for(:response) do |r| %>
+    <%= f.fields_for :responses, :url => new_usertest_path(@f) do |r| %>
       <%= r.text_field :response_data %>
+      <% r.hidden_field :question_id, :value => q.id %>
+      <% r.hidden_field :question_id, :value => @user.id %>
+
     <% end %>
     <br />
   <% end %>

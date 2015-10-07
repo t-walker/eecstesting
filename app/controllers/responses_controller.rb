@@ -61,6 +61,6 @@ private
   end
 
   def response_params
-    params.require(:response).permit(:response_data, :question_id)
+    params.require(:response).permit(:response_data, :question_id, :user_id)
   end
 end

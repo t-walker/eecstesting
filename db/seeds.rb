@@ -5,6 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+User.delete_all
+Question.delete_all
+Usertest.delete_all
+
 Question.create(prompt: "What is the current year",
                 possible1: "2012",
                 possible2: "2013",

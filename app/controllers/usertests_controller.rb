@@ -67,6 +67,6 @@ private
   end
 
   def usertest_params
-    params.require(:usertest).permit(:user_id, :responses_attributes => [:response_data, :question_id])
+    params.require(:usertest).permit(:responses_attributes => [:response_data, :question_id]).merge(user_id: current_user.id)
   end
 end

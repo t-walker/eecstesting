@@ -1,0 +1,22 @@
+<h1><%= @student.firstname %>'s Test | <%= (@usertest.score/@responses.size) * 100 %>%</h1>
+<table class="table" style="color: black;">
+  <tr>
+    <th>Question</th>
+    <th>Student's Answer</th>
+    <th>Correct Answer</th>
+    <th>Correct</th>
+  </tr>
+  <% @responses.each do |r| %>
+  <tr>
+   <% @question = Question.find_by_id(r.question_id) %>
+   <td><%= @question.prompt %>?</td>
+   <td><%= r.response_data %></td>
+   <td><%= @question.correct %></td>
+   <% if r.correct %>
+     <td style="color:green;">Correct!</td>
+   <% else %>
+     <td style="color:red;">Incorrect</td>
+   <% end %>
+  </tr>
+  <% end %>
+</table>

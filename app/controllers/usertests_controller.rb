@@ -20,6 +20,7 @@ class UsertestsController < ApplicationController
 
   def create
     @usertest = Usertest.new(usertest_params)
+    grade_test(@usertest)
     respond_to do |format|
       if @usertest.save
         format.html { redirect_to @usertest, notice: 'Usertest was successfully created.' }
@@ -56,6 +57,22 @@ class UsertestsController < ApplicationController
   end
 
 private
+
+  def grade_test(user_test)
+    @usertest = user_test
+    correct = 0
+    @usertest.responses.each do |r|
+      @question = Question.find_by_id(r.question_id)
+      if r.response_data == @question.correct
+        r.correct = true
+        correct += 1
+      else
+        r.correct = false
+      end
+    end
+    @usertest.score = correct
+  end
+
   def set_usertest
     @usertest = Usertest.find(params[:id])
   end

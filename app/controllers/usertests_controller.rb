@@ -8,6 +8,8 @@ class UsertestsController < ApplicationController
 
   def show
     @usertest = Usertest.find(params[:id])
+    @student = User.find_by_id(@usertest.user_id)
+    @responses = @usertest.responses
   end
 
   def new

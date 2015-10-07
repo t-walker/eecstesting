@@ -7,9 +7,10 @@
   </tr>
 <% @usertests.each do |ut| %>
   <% @user = User.find_by_id(ut.user_id) %>
+  <tr>
     <td><%= @user.firstname %></td>
     <td><%= ut.score %></td>
     <td><%= link_to "View", usertest_path(ut.id), style: "color:black;"%></td>
-
+  </tr>
   <% end %>
 </table>

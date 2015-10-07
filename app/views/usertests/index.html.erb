@@ -1,0 +1,15 @@
+<h1>List of all tests</h1>
+<table class="table" style="color:black;">
+  <tr>
+    <th>Student's Name</th>
+    <th>Score</th>
+    <th>View Test</th>
+  </tr>
+<% @usertests.each do |ut| %>
+  <% @user = User.find_by_id(ut.user_id) %>
+    <td><%= @user.firstname %></td>
+    <td><%= ut.score %></td>
+    <td><%= link_to "View", usertest_path(ut.id), style: "color:black;"%></td>
+
+  <% end %>
+</table>

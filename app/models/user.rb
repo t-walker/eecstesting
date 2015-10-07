@@ -5,6 +5,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :usertests
   has_many :responses, through: :usertests
-  accepts_nested_attributes_for :responses
 
 end

@@ -9,7 +9,6 @@ class Ability
          can :manage, :all
        else
          can :create, Usertest
-         can :read, Usertest, :user_id => user.id
        end
 
 

@@ -1,72 +1,68 @@
-<div class="row">
-  <div class="col-md-3">
-    <h2>New User</h2>
-  </div>
-</div>
+<h2>New User</h2>
+
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
-  <div class="container">
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-lg-2">
         <%= f.label :firstname, "First Name", class: "pull-left"%>
       </div>
-      <div class="col-md-2">
+      <div class="col-lg-3">
           <%= f.text_field :firstname, autofocus: true, class: "form-control" %>
       </div>
     </div>
     <br />
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-lg-2">
         <%= f.label :lastname, "Last Name", class: "pull-left"%>
       </div>
-      <div class="col-md-2">
+      <div class="col-lg-3">
           <%= f.text_field :lastname, autofocus: true, class: "form-control" %>
       </div>
     </div>
     <br />
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-lg-2">
         <%= f.label :studentid, "Student ID", class: "pull-left" %>
       </div>
-      <div class="col-md-2">
+      <div class="col-lg-3">
           <%= f.text_field :studentid, autofocus: true, class: "form-control" %>
       </div>
     </div>
     <br />
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-lg-2">
         <%= f.label :email, "Email", class: "pull-left" %>
       </div>
-      <div class="col-md-2">
+      <div class="col-lg-3">
           <%= f.email_field :email, autofocus: true, class: "form-control" %>
       </div>
     </div>
     <br />
       <div class="row">
-        <div class="col-md-2">
+        <div class="col-lg-2">
           <%= f.label :password, class: "pull-left" %>
         </div>
-        <div class="col-md-2">
+        <div class="col-lg-3">
           <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
         </div>
       </div>
       <br />
       <div class="row">
-        <div class="col-md-2">
+        <div class="col-lg-2">
           <%= f.label :password_confirmation, "Confirm Password", class: "pull-left" %>
         </div>
-        <div class="col-md-2">
+        <div class="col-lg-3">
         <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
         </div>
       </div>
       <br />
       <div class="row">
         <br />
-        <div class="col-md-2">
-        <%= f.submit "Sign Up" %>
+        <div class="col-lg-2">
+        <%= f.submit "Sign Up", class: "btn btn-primary" %>
         </div>
       </div>
-  </div>
+
   <div class="row">
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>

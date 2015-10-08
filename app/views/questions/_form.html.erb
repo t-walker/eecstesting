@@ -13,29 +13,34 @@
 
   <div class="field">
     <%= f.label :prompt %><br>
-    <%= f.text_field :prompt %>
+    <%= f.text_field :prompt, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :possible1, "Possible Answer 1" %><br>
-    <%= f.text_field :possible1 %>
+    <%= f.text_field :possible1, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :possible2, "Possible Answer 2" %><br>
-    <%= f.text_field :possible2 %>
+    <%= f.text_field :possible2, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :possible3, "Possible Answer 3" %><br>
-    <%= f.text_field :possible3 %>
+    <%= f.text_field :possible3, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :possible4, "Possible Answer 4" %><br>
-    <%= f.text_field :possible4 %>
+    <%= f.text_field :possible4, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :correct, "Correct" %><br>
-    <%= f.text_field :correct %>
+    <%= f.text_field :correct, class: "form-control" %>
   </div>
+  <div class="field">
+    <%= f.label :question_type, "Question Type" %><br>
+    <%= f.select :question_type, ['shortans', 'longans', 'multchoice', 'truefalse'], class: "form-control" %>
+  </div>
+  <br />
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Create Question", class: "btn btn-primary pull-left"%>
   </div>
 <% end %>

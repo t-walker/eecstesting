@@ -2,7 +2,7 @@
   <% @questions.each do |q| %>
     <%= f.fields_for :responses, :url => new_usertest_path(@f) do |r| %>
       <%= r.hidden_field :question_id, :value => q.id %>
-      <%= render 'responses/form', question: q, response: r%>
+      <%= render 'responses/form', question: q, response: r %>
     <% end %>
     <br />
   <% end %>

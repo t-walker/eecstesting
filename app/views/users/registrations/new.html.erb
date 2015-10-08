@@ -1,43 +1,71 @@
-<h2>Sign up</h2>
+<h2>New User</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
-  <div class="field">
-    <%= f.label "First Name" %><br />
-    <%= f.text_field :firstname, autofocus: true %>
-  </div>
+    <div class="row">
+      <div class="col-lg-2">
+        <%= f.label :firstname, "First Name", class: "pull-left"%>
+      </div>
+      <div class="col-lg-3">
+          <%= f.text_field :firstname, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-lg-2">
+        <%= f.label :lastname, "Last Name", class: "pull-left"%>
+      </div>
+      <div class="col-lg-3">
+          <%= f.text_field :lastname, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-lg-2">
+        <%= f.label :studentid, "Student ID", class: "pull-left" %>
+      </div>
+      <div class="col-lg-3">
+          <%= f.text_field :studentid, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-lg-2">
+        <%= f.label :email, "Email", class: "pull-left" %>
+      </div>
+      <div class="col-lg-3">
+          <%= f.email_field :email, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+    <br />
+      <div class="row">
+        <div class="col-lg-2">
+          <%= f.label :password, class: "pull-left" %>
+        </div>
+        <div class="col-lg-3">
+          <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-lg-2">
+          <%= f.label :password_confirmation, "Confirm Password", class: "pull-left" %>
+        </div>
+        <div class="col-lg-3">
+        <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <br />
+        <div class="col-lg-2">
+        <%= f.submit "Sign Up", class: "btn btn-primary" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label "Last Name" %><br />
-    <%= f.text_field :lastname, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label "Student ID" %><br />
-    <%= f.text_field :studentid, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="row">
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
   </div>
 <% end %>
-
-<%= render "users/shared/links" %>

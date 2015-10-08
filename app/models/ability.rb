@@ -10,7 +10,5 @@ class Ability
        else
          can :create, Usertest
        end
-
-
   end
 end

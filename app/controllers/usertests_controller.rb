@@ -1,5 +1,5 @@
 class UsertestsController < ApplicationController
-  before_action :set_usertest, only: [:show, :edit, :update, :destroy]
+  before_action :set_usertest, only: [:index, :show, :edit, :update, :destroy]
   before_action :set_user
 
   def index

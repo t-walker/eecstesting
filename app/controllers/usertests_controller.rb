@@ -1,4 +1,5 @@
 class UsertestsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_usertest, only: [:show, :edit, :update, :destroy]
   before_action :set_user
 
@@ -23,11 +24,9 @@ class UsertestsController < ApplicationController
     grade_test(@usertest)
     respond_to do |format|
       if @usertest.save
-        format.html { redirect_to @usertest, notice: 'Usertest was successfully created.' }
-        format.json { render :show, status: :created, location: @usertest }
+        format.html { redirect_to root_url, notice: 'Your test was submitted. Thank you.' }
       else
         format.html { render :new }
-        format.json { render json: @usertest.errors, status: :unprocessable_entity }
       end
     end
   end

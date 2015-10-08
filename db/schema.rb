@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151007042633) do
+ActiveRecord::Schema.define(version: 20151008010841) do
 
   create_table "questions", force: :cascade do |t|
     t.string   "prompt"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20151007042633) do
     t.string   "firstname"
     t.string   "lastname"
     t.string   "studentid"
+    t.string   "role"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

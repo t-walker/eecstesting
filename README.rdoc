@@ -1,28 +1,13 @@
-== README
+# EECS Computer Science Placement test
+## Why?
+At WSU, we have two classes that entry level Computer Science students can take: Python or C Programming.
+Students are sorted primarily based on whether or not they've taken a computer science class before and a math score.
+However, this method is highly inaccurate.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## How?
+Wanting to make sure that students are properly sorted into the correct, the department
+has decided to create a test that will give advisors a recommendation based on their score and other key performance indicators.
+This web application not only allows students to take the test but also will allow administrators to add additional information and
+analyze this data on the back-end.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+For questions please contact me at tyler.p.walker [at] wsu.edu. 

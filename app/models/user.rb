@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   validates :firstname, presence: true
   validates :lastname, presence: true
-  validates :studentid, presence: true, length: { is: 6 }, uniqueness: true
+  validates :studentid, presence: true, length: { is: 8 }, uniqueness: true
 
   def admin?
     if role == "admin"

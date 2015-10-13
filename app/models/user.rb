@@ -6,6 +6,10 @@ class User < ActiveRecord::Base
   has_many :usertests
   has_many :responses, through: :usertests
 
+  validates :firstname, presence: true
+  validates :lastname, presence: true
+  validates :studentid, presence: true, length: { is: 6 }, uniqueness: true
+
   def admin?
     if role == "admin"
       true

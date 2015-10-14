@@ -3,4 +3,4 @@
 <%- @usertests.each do |test| %>
   <%- user = User.find_by_id(test.user_id) %>
   <%= CSV.generate_line([user.studentid, user.firstname, user.lastname, test.score]) %>
-<% end %>
+<% end %> 

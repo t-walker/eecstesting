@@ -1,4 +1,12 @@
 <h1>Questions#edit</h1>
-<%= render 'form' %>
+<div class="row">
+  <div class="col-md-12">
+    <%= render 'form' %>
+  </div>
+</div>
 <br />
-<%= link_to "Back", url_for(:back) %>
+<div class="row">
+  <div class="col-md-12">
+    <%= button_to "Back", url_for(:back), class: "btn btn-default"%>
+  </div>
+</div>

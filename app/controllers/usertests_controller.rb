@@ -65,6 +65,8 @@ private
       if r.response_data == @question.correct
         r.correct = true
         correct += 1
+      elsif @question.question_type == "shortans" || @question.question_type == "longans"
+        correct += 1
       else
         r.correct = false
       end

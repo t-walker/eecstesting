@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :registrations => "users/registrations" } do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
-  
+
   get 'users/', :to => 'users#index'
 
   resources :responses
@@ -15,5 +15,9 @@ Rails.application.routes.draw do
   get 'questions/edit'
   get 'questions/update'
   get 'questions/destroy'
+
+  put 'admin/:id' => 'users#make_admin', :as => "make_admin"
+  put 'admin/:id' => 'users#make_admin', :as => "remove_admin"
+
   root 'home#index'
 end

@@ -12,6 +12,7 @@
         <th>Student ID</th>
         <th>Recent Score</th>
         <th>Role</th>
+        <th>Change Admin</th>
       </tr>
       <% @users.each do |u| %>
       <tr>
@@ -19,7 +20,12 @@
         <td><%= u.lastname %></td>
         <td><%= u.studentid %></td>
         <td><%=  defined?(u.usertests.last.score) ? u.usertests.last.score : 0 %></td>
-        <td><%= u.role == "admin" ? "admin" : "student" %></td>
+        <td><%= u.role == "admin" ? "Admin" : "Student" %></td>
+        <% if !u.admin? %>
+        <td><%= button_to "Make Admin", make_admin_path(id: u.id) , method: :put, class: "btn btn-primary btn-block" %></td>
+        <% else %>
+        <td><%= button_to "Remove Admin", remove_admin_path(id: u.id) , method: :put, class: "btn btn-danger btn-block" %></td>
+        <% end %>
       </tr>
       <% end %>
     </table>

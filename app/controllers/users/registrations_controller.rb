@@ -3,8 +3,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   skip_load_and_authorize_resource
 
   protected
-
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up).push(:firstname, :lastname, :studentid)
+    devise_parameter_sanitizer.for(:sign_up).push(:firstname, :lastname, :studentid, :role)
   end
 end

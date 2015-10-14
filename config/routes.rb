@@ -16,8 +16,8 @@ Rails.application.routes.draw do
   get 'questions/update'
   get 'questions/destroy'
 
-  put 'admin/:id' => 'users#make_admin', :as => "make_admin"
-  put 'admin/:id' => 'users#make_admin', :as => "remove_admin"
+  put 'addadmin/:id' => 'users#make_admin', :as => "make_admin"
+  put 'removeadmin/:id' => 'users#remove_admin', :as => "remove_admin"
 
   root 'home#index'
 end

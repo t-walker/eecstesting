@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
-  def make_admin
+  def remove_admin
     user = User.find params[:id]
     user.update( :role => "student" )
     redirect_to users_url

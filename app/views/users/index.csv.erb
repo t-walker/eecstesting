@@ -1,0 +1,10 @@
+<%- headers = ['Student ID', 'First Name', 'Last Name', 'E-mail', 'Recent Score'] %>
+<%= CSV.generate_line headers %>
+<%- @users.each do |user| %>
+  <% if defined?(user.usertests.last.score) %>
+    <% score = user.usertests.last.score %>
+  <% else %>
+    <% score = 0 %>
+  <% end %>
+  <%= CSV.generate_line([user.studentid, user.firstname, user.lastname, user.email, score ]) %>
+<% end %>

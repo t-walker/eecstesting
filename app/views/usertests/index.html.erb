@@ -9,6 +9,7 @@
       <tr>
         <th>Student's Name</th>
         <th>Score</th>
+        <th>Date Taken</th>
         <th>View Test</th>
       </tr>
     <% @usertests.each do |ut| %>
@@ -16,10 +17,11 @@
       <tr>
         <td><%= @user.firstname %> <%= @user.lastname %></td>
         <td><%= ut.score %></td>
+        <td><%= ut.created_at.to_formatted_s(:long) %></td>
         <td><%= button_to "View Test", usertest_path(ut.id), class: "btn btn-default btn-block", method: :get %></td>
       </tr>
       <% end %>
     </table>
-    <%= link_to 'Download as CSV', usertests_path(format: :csv) %> 
+    <%= link_to 'Download as CSV', usertests_path(format: :csv) %>
   </div>
 </div>

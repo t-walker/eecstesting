@@ -4,10 +4,7 @@ class UsersController < ApplicationController
     @users = User.all
     respond_to do |format|
       format.html
-      format.csv do
-        headers['Content-Disposition'] = "attachment; filename=\'users.csv'"
-        headers['Content-Type'] ||= 'text/csv'
-      end
+      format.csv { send_data @users.as_csv }
     end
   end
 

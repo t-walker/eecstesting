@@ -1,7 +1,7 @@
 <h1>Placement Test</h1>
-<p>All students who are looking to take Computer Science 121: Introduction to Software Engineering must take this placement test.</p>
+<p>All students who want to take CptS 121: <i>Introduction to Software Engineering</i> must take this placement test.</p>
 <% if !user_signed_in? %>
-<p>If you haven't already, please <%= link_to "register", new_user_registration_path %> for your account. If you already have an account please   <%= link_to "sign in", new_user_session_path %>.</p>
+<p>If you haven't already, please <%= link_to "register", new_user_registration_path %> for an account. If you already have an account, please  <%= link_to "sign in", new_user_session_path %>.</p>
 <% else %>
 <% end %>
 <% if user_signed_in? %>

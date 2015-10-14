@@ -16,7 +16,7 @@
       <tr>
         <td><%= @user.firstname %> <%= @user.lastname %></td>
         <td><%= ut.score %></td>
-        <td><%= button_to "View Test", usertest_path(ut.id), class: "btn btn-default btn-block"%></td>
+        <td><%= button_to "View Test", usertest_path(ut.id), class: "btn btn-default btn-block", method: :get %></td>
       </tr>
       <% end %>
     </table>

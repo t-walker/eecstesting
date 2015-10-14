@@ -7,7 +7,7 @@ class UsertestsController < ApplicationController
     @usertests = Usertest.all
     respond_to do |format|
       format.html
-      format.csv { send_data @usertests.as_csv}
+      format.csv { send_data @usertests.to_csv}
     end
   end
 

@@ -17,14 +17,27 @@ class User < ActiveRecord::Base
       false
     end
   end
-  
-  def self.as_csv
-    CSV.generate do |csv|
-      csv << column_names
-      all.each do |item|
-        csv << item.attributes.values_at(*column_names)
-      end
-    end
+
+  def self.to_csv
+     attributes = %w{studentid email name score }
+
+     CSV.generate(headers: true) do |csv|
+       csv << attributes
+       all.each do |user|
+         csv << attributes.map{ |attr| user.send(attr) }
+       end
+     end
+   end
+
+  def name
+    "#{firstname} #{lastname}"
   end
 
+  def score
+    if defined?(self.usertests.last.score)
+      self.usertests.last.score
+    else
+      0
+    end
+  end
 end

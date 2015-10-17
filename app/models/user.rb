@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :usertests
   has_many :responses, through: :usertests
-
+  has_many :questions
+  
   validates :firstname, presence: true
   validates :lastname, presence: true
   validates :studentid, presence: true, length: { is: 8 }, uniqueness: true

@@ -31,20 +31,10 @@ Question.create(prompt: "Is def a reserved word in Python",
                 correct: "True",
                 question_type: "truefalse")
 
-user = User.new
-user.firstname = "Tyler"
-user.lastname = "Walker"
-user.studentid = "111111"
-user.email = "tyler.p.walker@wsu.edu"
-user.password = "password1234"
-user.role = "admin"
-user.save
-
-user = User.new
-user.firstname = "Student"
-user.lastname = "Walker"
-user.studentid = "111112"
-user.email = "tyler.p.walker@wsu.edu"
-user.password = "password1234"
-user.role = "admin"
-user.save
+User.create!(email: 'tyler.p.walker@wsu.edu',
+             password: 'password1234',
+             password_confirmation: 'password1234',
+             firstname: 'Tyler',
+             lastname: 'Walker',
+             role: 'admin',
+             studentid: '11348007')

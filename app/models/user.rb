@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  after_initialize :default_values
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :usertests
@@ -9,6 +10,10 @@ class User < ActiveRecord::Base
   validates :firstname, presence: true
   validates :lastname, presence: true
   validates :studentid, presence: true, length: { is: 8 }, uniqueness: true
+
+  def default_values
+    self.role ||= 'student'
+  end
 
   def admin?
     if role == "admin"

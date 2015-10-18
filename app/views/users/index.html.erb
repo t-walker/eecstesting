@@ -25,7 +25,7 @@
   <div class="col-md-6">
     <div class="panel panel-default" style="vertical-align: text-bottom;">
       <h4 style="text-align: center; padding-top: 20px; margin-bottom: 0px;">Users Registered by Date</h4>
-      <%= area_chart User.group_by_day(:created_at, format:"").count, {library: {legend: 'none',
+      <%= area_chart User.group_by_day(:created_at, format:"").maximum(:load_date), {library: {legend: 'none',
                                                                                            titlePosition: 'none',
                                                                                            hAxis: {title: "Date"},
                                                                                            vAxis: {title: "# of Users Registered"}}, discrete: false} %>

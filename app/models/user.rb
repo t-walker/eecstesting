@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   end
 
   def self.to_csv
-     attributes = %w{studentid email name score }
+     attributes = %w{studentid email name }
 
      CSV.generate(headers: true) do |csv|
        csv << attributes
@@ -36,13 +36,5 @@ class User < ActiveRecord::Base
 
   def name
     "#{firstname} #{lastname}"
-  end
-
-  def score
-    if defined?(self.usertests.last.score)
-      self.usertests.last.score
-    else
-      0
-    end
   end
 end

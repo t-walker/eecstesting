@@ -14,62 +14,64 @@
 ActiveRecord::Schema.define(version: 20151008010841) do
 
   create_table "questions", force: :cascade do |t|
-    t.string   "prompt"
-    t.string   "possible1"
-    t.string   "possible2"
-    t.string   "possible3"
-    t.string   "possible4"
-    t.string   "correct"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.string   "question_type"
+    t.string   "prompt",        limit: 255
+    t.string   "possible1",     limit: 255
+    t.string   "possible2",     limit: 255
+    t.string   "possible3",     limit: 255
+    t.string   "possible4",     limit: 255
+    t.string   "correct",       limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "question_type", limit: 255
   end
 
   create_table "responses", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "usertest_id"
-    t.string   "response_data"
+    t.integer  "user_id",       limit: 4
+    t.integer  "usertest_id",   limit: 4
+    t.string   "response_data", limit: 255
     t.boolean  "correct"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.integer  "question_id_id"
-    t.integer  "question_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "question_id",   limit: 4
   end
 
-  add_index "responses", ["question_id"], name: "index_responses_on_question_id"
-  add_index "responses", ["question_id_id"], name: "index_responses_on_question_id_id"
-  add_index "responses", ["user_id"], name: "index_responses_on_user_id"
-  add_index "responses", ["usertest_id"], name: "index_responses_on_usertest_id"
+  add_index "responses", ["question_id"], name: "index_responses_on_question_id", using: :btree
+  add_index "responses", ["user_id"], name: "index_responses_on_user_id", using: :btree
+  add_index "responses", ["usertest_id"], name: "index_responses_on_usertest_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "firstname"
-    t.string   "lastname"
-    t.string   "studentid"
-    t.string   "role"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.string   "firstname",              limit: 255
+    t.string   "lastname",               limit: 255
+    t.string   "studentid",              limit: 255
+    t.string   "role",                   limit: 255
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "usertests", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "score"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "user_id",    limit: 4
+    t.integer  "score",      limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
-  add_index "usertests", ["user_id"], name: "index_usertests_on_user_id"
+  add_index "usertests", ["user_id"], name: "index_usertests_on_user_id", using: :btree
 
+  add_foreign_key "responses", "questions"
+  add_foreign_key "responses", "users"
+  add_foreign_key "responses", "usertests"
+  add_foreign_key "usertests", "users"
 end

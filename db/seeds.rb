@@ -40,4 +40,4 @@ User.create!(email: 'tyler.p.walker@wsu.edu',
              role: 'admin',
              studentid: '11348007')
 
-Testversion.create!(id: 1, title: "Summer 2015", isopen: true)
+Testversion.create!(title: "Summer 2015", isopen: true)

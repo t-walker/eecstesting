@@ -8,6 +8,7 @@
 User.delete_all
 Question.delete_all
 Usertest.delete_all
+Testversion.delete_all
 
 Question.create(prompt: "What is the current year",
                 possible1: "2012",
@@ -38,3 +39,5 @@ User.create!(email: 'tyler.p.walker@wsu.edu',
              lastname: 'Walker',
              role: 'admin',
              studentid: '11348007')
+
+Testversion.create!(id: 1, title: "Summer 2015", isopen: true)

@@ -19,6 +19,7 @@ class UsertestsController < ApplicationController
 
   def new
     @usertest = Usertest.new
+    @usertest.testversion = Testversion.current 
     @questions = Question.all
     @usertest_responses = @usertest.responses.build
   end

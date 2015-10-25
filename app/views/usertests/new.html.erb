@@ -1,2 +1,7 @@
-<h1>Test</h1>
+<% if @usertest.testversion %>
+<h2>You are taking the <%= @usertest.testversion.title %> test.</h2>
 <%= render 'form' %>
+
+<% else %>
+<h2>Testing is currently closed.</h2>
+<% end %>

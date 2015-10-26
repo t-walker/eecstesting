@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151025223826) do
+ActiveRecord::Schema.define(version: 20151026211037) do
 
   create_table "questions", force: :cascade do |t|
     t.string   "prompt",        limit: 255
@@ -51,7 +51,10 @@ ActiveRecord::Schema.define(version: 20151025223826) do
     t.boolean  "isopen"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.integer  "user_id",    limit: 4
   end
+
+  add_index "testversions", ["user_id"], name: "index_testversions_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -89,6 +92,7 @@ ActiveRecord::Schema.define(version: 20151025223826) do
   add_foreign_key "responses", "questions"
   add_foreign_key "responses", "users"
   add_foreign_key "responses", "usertests"
+  add_foreign_key "testversions", "users"
   add_foreign_key "usertests", "testversions"
   add_foreign_key "usertests", "users"
 end

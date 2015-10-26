@@ -10,7 +10,8 @@
     <td><%= tv.title %></td>
     <td><%= tv.startdate %></td>
     <td><%= tv.enddate %></td>
-    <td></td>
+    <td><%= tv.is_open? ? "True" : "False" %></td>
   </tr>
   <% end %>
 </table>
+<%= link_to "New Version", new_testversion_path %>

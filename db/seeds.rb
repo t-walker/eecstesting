@@ -38,4 +38,4 @@ User.create!(email: 'tyler.p.walker@wsu.edu',
 Testversion.create!(title: "Summer 2015",
                     isopen: true,
                     startdate:  DateTime.parse("09/01/2015 17:00"),
-                    enddate:  DateTime.parse("09/01/2016 17:00")  )
+                    enddate:  DateTime.parse("09/01/2016 17:00"))

@@ -5,6 +5,7 @@ class UsertestsController < ApplicationController
 
   def index
     @usertests = Usertest.all
+    @testversions = Testversion.all
     respond_to do |format|
       format.html
       format.csv { send_data @usertests.to_csv}
@@ -19,8 +20,8 @@ class UsertestsController < ApplicationController
 
   def new
     @usertest = Usertest.new
-    @usertest.testversion = Testversion.current 
-    @questions = Question.all
+    @usertest.testversion = Testversion.current
+    @testversion = @usertest.testversion
     @usertest_responses = @usertest.responses.build
   end
 

@@ -1,0 +1,16 @@
+<table class="table" style="color:black;">
+  <tr>
+    <th>Title</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Active?</th>
+  </tr>
+<% testversions.each do |tv| %>
+  <tr>
+    <td><%= tv.title %></td>
+    <td><%= tv.startdate %></td>
+    <td><%= tv.enddate %></td>
+    <td></td>
+  </tr>
+  <% end %>
+</table>

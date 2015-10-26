@@ -5,11 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-User.delete_all
-Question.delete_all
-Usertest.delete_all
-Testversion.delete_all
-
 Question.create(prompt: "What is the current year",
                 possible1: "2012",
                 possible2: "2013",
@@ -40,4 +35,7 @@ User.create!(email: 'tyler.p.walker@wsu.edu',
              role: 'admin',
              studentid: '11348007')
 
-Testversion.create!(title: "Summer 2015", isopen: true)
+Testversion.create!(title: "Summer 2015",
+                    isopen: true,
+                    startdate:  DateTime.parse("09/01/2015 17:00"),
+                    enddate:  DateTime.parse("09/01/2016 17:00")  )

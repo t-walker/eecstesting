@@ -1,25 +1,41 @@
-<div class="form-horizontal">
-  <%= form_for(@testversion) do |f|  %>
-    <div class="form-group">
-      <%= f.label :title %>
-      <%= f.text_field :title, class: "form-control" %>
+<script>
+$(function() {
+  $('#datepicker0').datepicker()
+  $('#datepicker1').datepicker();
+
+});
+</script>
+<div class="row">
+  <div class="col-md-4">
+    <h2>New Test Version</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-horizontal">
+      <%= form_for(@testversion) do |f|  %>
+        <div class="form-group">
+          <%= f.label :title %>
+          <%= f.text_field :title, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :startdate %>
+          <%= f.text_field :startdate, class: "form-control", id: "datepicker0" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :endate %>
+          <%= f.text_field :enddate, class: "form-control", id: "datepicker1"%>
+        </div>
+        <% for question in @questions %>
+            <div>
+                <%= check_box_tag "testversion[question_ids][]", question.id, @testversion.questions.include?(question) %>
+                <%= question.prompt %>
+            </div>
+        <% end %>
+        <div class="form-group">
+          <%= f.submit %>
+        </div>
+      <% end %>
     </div>
-    <div class="form-group">
-      <%= f.label :startdate %>
-      <%= f.text_field :startdate, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :endate %>
-      <%= f.text_field :enddate, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :isopen, "Active?" %>
-      <%= f.radio_button :isopen, "1" %>
-      <%= label_tag(:true, "True") %>
-      <%= f.radio_button :isopen, "0" %>
-      <%= label_tag(:false, "False") %>    </div>
-    <div class="form-group">
-      <%= f.submit %>
-    </div>
-  <% end %>
+  </div>
 </div>

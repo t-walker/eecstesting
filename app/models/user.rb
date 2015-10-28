@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  after_initialize :default_values
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :usertests
@@ -11,6 +12,10 @@ class User < ActiveRecord::Base
   validates :lastname, presence: true
   validates :studentid, presence: true, length: { is: 8 }, uniqueness: true
 
+  def default_values
+    self.role ||= 'student'
+  end
+
   def admin?
     if role == "admin"
       true
@@ -20,7 +25,7 @@ class User < ActiveRecord::Base
   end
 
   def self.to_csv
-     attributes = %w{studentid email name score }
+     attributes = %w{studentid email name }
 
      CSV.generate(headers: true) do |csv|
        csv << attributes
@@ -32,13 +37,5 @@ class User < ActiveRecord::Base
 
   def name
     "#{firstname} #{lastname}"
-  end
-
-  def score
-    if defined?(self.usertests.last.score)
-      self.usertests.last.score
-    else
-      0
-    end
   end
 end

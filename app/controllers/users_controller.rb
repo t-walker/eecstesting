@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   load_and_authorize_resource
   def index
-    @users = User.all
+    @users = User.order('users.role ASC').all
+    @current = Time.now
     respond_to do |format|
       format.html
       format.csv { send_data @users.to_csv }

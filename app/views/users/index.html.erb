@@ -1,26 +1,17 @@
 <div class="row">
-  <div class="col-md-12">
-    <h1>Registered Users</h2>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
+  <div class="col-md-6">
     <table class="table" style="color: black;">
       <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Student ID</th>
-        <th>Recent Score</th>
-        <th>Role</th>
+        <th>Name</th>
+        <th>E-mail</th>
+
         <th>Change Admin</th>
       </tr>
       <% @users.each do |u| %>
       <tr>
-        <td><%= u.firstname %></td>
-        <td><%= u.lastname %></td>
-        <td><%= u.studentid %></td>
-        <td><%=  defined?(u.usertests.last.score) ? u.usertests.last.score : 0 %></td>
-        <td><%= u.role == "admin" ? "Admin" : "Student" %></td>
+        <td><%= u.firstname %> <%= u.lastname %></td>
+        <td><%= u.email %></td>
+
         <% if !u.admin? %>
         <td><%= button_to "Make Admin", make_admin_path(id: u.id) , method: :put, class: "btn btn-primary btn-block" %></td>
         <% else %>
@@ -29,6 +20,15 @@
       </tr>
       <% end %>
     </table>
-  <%= link_to 'Download as CSV', users_path(format: :csv) %>
+  <%= link_to 'Download User data as CSV', users_path(format: :csv) %>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-default" style="vertical-align: text-bottom;">
+      <h4 style="text-align: center; padding-top: 20px; margin-bottom: 0px;">Users Registered by Date</h4>
+      <%= area_chart User.group_by_day(:created_at, format: "%b %d %Y").count, {library: {legend: 'none',
+                                                                       titlePosition: 'none',
+                                                                       hAxis: {title: "Date"},
+                                                                       vAxis: {title: "# of Users Registered"}}, discrete: true} %>
+    </div>
   </div>
 </div>

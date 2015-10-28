@@ -26,13 +26,17 @@ $(function() {
           <%= f.label :endate %>
           <%= f.text_field :enddate, class: "form-control", id: "datepicker1"%>
         </div>
+        <h4>Test Questions:</h4>
         <% for question in @questions %>
-            <div>
-                <%= check_box_tag "testversion[question_ids][]", question.id, @testversion.questions.include?(question) %>
-                <%= question.prompt %>
+            <div class="form-group">
+                <label><%= check_box_tag "testversion[question_ids][]", question.id, @testversion.questions.include?(question) %>
+                <%= question.prompt %></label>
             </div>
         <% end %>
-        <%= f.select(:isopen, @options, :prompt => 'Select') %>
+        <div class="form-group">
+          <%= f.label :isopen, "Open?" %>
+          <%= f.select(:isopen, @options, :prompt => 'Select', class: "form-control") %>
+        </div>
         <div class="form-group">
           <%= f.submit %>
         </div>

@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20151028214137) do
 
   create_table "notifications", force: :cascade do |t|
@@ -23,6 +24,9 @@ ActiveRecord::Schema.define(version: 20151028214137) do
   end
 
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
+=======
+ActiveRecord::Schema.define(version: 20151026211037) do
+>>>>>>> master
 
   create_table "questions", force: :cascade do |t|
     t.string   "prompt",        limit: 255
@@ -34,11 +38,16 @@ ActiveRecord::Schema.define(version: 20151028214137) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.string   "question_type", limit: 255
+<<<<<<< HEAD
     t.integer  "user_id",       limit: 4
   end
 
   add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree
 
+=======
+  end
+
+>>>>>>> master
   create_table "questions_testversions", id: false, force: :cascade do |t|
     t.integer "testversion_id", limit: 4
     t.integer "question_id",    limit: 4
@@ -114,8 +123,11 @@ ActiveRecord::Schema.define(version: 20151028214137) do
   add_index "usertests", ["testversion_id"], name: "index_usertests_on_testversion_id", using: :btree
   add_index "usertests", ["user_id"], name: "index_usertests_on_user_id", using: :btree
 
+<<<<<<< HEAD
   add_foreign_key "notifications", "users"
   add_foreign_key "questions", "users"
+=======
+>>>>>>> master
   add_foreign_key "testversions", "users"
   add_foreign_key "usertests", "testversions"
 end

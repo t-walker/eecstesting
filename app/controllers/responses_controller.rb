@@ -1,5 +1,5 @@
 class ResponsesController < ApplicationController
-  load_and_authorize_resource 
+  load_and_authorize_resource
   before_action :set_response, only: [:show, :edit, :update, :destroy]
   before_action :set_user
   def index

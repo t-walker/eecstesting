@@ -41,3 +41,8 @@ User.create!(email: 'tyler.p.walker@wsu.edu',
              lastname: 'Walker',
              role: 'admin',
              studentid: '11348007')
+
+Testversion.create!(title: "Summer 2015",
+                    isopen: true,
+                    startdate:  DateTime.parse("09/01/2015 17:00"),
+                    enddate:  DateTime.parse("09/01/2016 17:00"))

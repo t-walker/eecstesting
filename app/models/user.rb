@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   after_initialize :default_values
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :usertests
+  has_many :usertests, dependent: :destroy
   has_many :responses, through: :usertests
   has_many :questions
   

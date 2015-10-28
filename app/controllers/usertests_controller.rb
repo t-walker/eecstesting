@@ -4,7 +4,8 @@ class UsertestsController < ApplicationController
   before_action :set_user
 
   def index
-    @usertests = Usertest.all
+    @usertests = Usertest.last(5)
+    @testversions = Testversion.last(5)
     respond_to do |format|
       format.html
       format.csv { send_data @usertests.to_csv}
@@ -19,12 +20,14 @@ class UsertestsController < ApplicationController
 
   def new
     @usertest = Usertest.new
-    @questions = Question.all
+    @usertest.testversion = Testversion.current
+    @testversion = @usertest.testversion
     @usertest_responses = @usertest.responses.build
   end
 
   def create
     @usertest = Usertest.new(usertest_params)
+    @usertest.testversion = Testversion.current
     grade_test(@usertest)
     respond_to do |format|
       if @usertest.save
@@ -89,6 +92,6 @@ private
   end
 
   def usertest_params
-    params.require(:usertest).permit(:responses_attributes => [:response_data, :question_id]).merge(user_id: current_user.id)
+    params.require(:usertest).permit(:testversion_id, :responses_attributes => [:response_data, :question_id]).merge(user_id: current_user.id)
   end
 end

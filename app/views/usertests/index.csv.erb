@@ -1,6 +1,0 @@
-<%- headers = ['Student ID', 'First Name', 'Last Name', 'Date Submitted', 'Score'] -%>
-<%= CSV.generate_line headers %>
-<%- @usertests.each do |test| -%>
-  <% user = User.find_by_id(test.user_id) %>
-  <%= CSV.generate_line([user.studentid, user.firstname, user.lastname, test.created_at.to_formatted_s(:db), test.score).html_safe.strip %>
-<%- end -%>

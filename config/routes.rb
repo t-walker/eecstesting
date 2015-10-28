@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :responses
   resources :questions
   resources :usertests
+  resources :notifications
 
   get 'questions/index'
   get 'questions/show'

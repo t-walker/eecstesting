@@ -5,9 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-User.delete_all
+Response.delete_all
 Question.delete_all
 Usertest.delete_all
+Notification.delete_all
+Testversion.delete_all
+User.delete_all
 
 Question.create(prompt: "What is the current year",
                 possible1: "2012",
@@ -38,4 +41,3 @@ User.create!(email: 'tyler.p.walker@wsu.edu',
              lastname: 'Walker',
              role: 'admin',
              studentid: '11348007')
->>>>>>> 7f4da7ed91dba64c71f7041a41f2a0e0d04c24ef

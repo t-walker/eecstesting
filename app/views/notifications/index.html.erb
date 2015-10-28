@@ -1,0 +1,15 @@
+<div class="row">
+  <table class="table" style="color: black;">
+    <tr>
+      <th>Date</th>
+      <th>Message</th>
+    </tr>
+    <% @notifications.each do |n| %>
+      <% u = User.find_by_id(n.user_id) %>
+      <tr>
+        <td><%= n.created_at %></td>
+        <td><%= u.firstname  %> <%= n.notification %> a <%= n.model %> with ID <%= n.model_id %> </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

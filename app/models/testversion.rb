@@ -3,6 +3,7 @@ class Testversion < ActiveRecord::Base
   accepts_nested_attributes_for :questions
   has_many :usertests, dependent: :destroy
   validates_uniqueness_of :isopen, if: :isopen
+
   def is_open?
     isopen
   end

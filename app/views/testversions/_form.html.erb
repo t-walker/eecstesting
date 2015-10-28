@@ -32,6 +32,7 @@ $(function() {
                 <%= question.prompt %>
             </div>
         <% end %>
+        <%= f.select(:isopen, @options, :prompt => 'Select') %>
         <div class="form-group">
           <%= f.submit %>
         </div>

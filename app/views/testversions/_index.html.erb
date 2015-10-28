@@ -13,7 +13,7 @@
     <% if Usertest.where(testversion_id: tv.id).count == 0 %>
     <td><%= link_to "Edit", edit_testversion_path(tv.id), class: "btn btn-default" %></td>
     <% else %>
-    <td><%= link_to "Edit", disabled: true %></td>
+    <td><%= link_to "Edit", "", class: "btn btn-default", disabled: true %></td>
     <% end %>
   </tr>
   <% end %>

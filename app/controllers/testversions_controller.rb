@@ -9,13 +9,14 @@ class TestversionsController < ApplicationController
   def new
     @testversion = Testversion.new
     @questions = Question.all
+    @options = options_for_open
   end
 
   def edit
     @testversion = Testversion.find(params[:id])
     @testversion.startdate = @testversion.startdate.strftime("%m/%d/%Y")
     @testversion.enddate = @testversion.enddate.strftime("%m/%d/%Y")
-
+    @options = options_for_open
     @questions = Question.all
   end
 
@@ -45,6 +46,13 @@ class TestversionsController < ApplicationController
         format.html { render :edit }
       end
     end
+  end
+
+  def options_for_open
+    [
+      ['True',true],
+      ['False',false]
+    ]
   end
 
 private

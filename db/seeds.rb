@@ -9,6 +9,7 @@ Response.delete_all
 Question.delete_all
 Usertest.delete_all
 Testversion.delete_all
+Notification.delete_all
 User.delete_all
 
 Question.create(prompt: "What is the current year",

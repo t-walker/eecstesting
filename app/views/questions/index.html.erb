@@ -13,6 +13,7 @@
         <th>Option 3</th>
         <th>Option 4</th>
         <th>Correct Answer</th>
+        <th>Author</th>
         <th>Edit</th>
       </tr>
       <% @questions.each do |q| %>
@@ -37,6 +38,12 @@
           <% if q.correct %>
           <td><%= q.correct %></td>
           <% end %>
+          <td>
+            <% @user = User.find_by_id(q.user_id) %>
+            <% if @user %>
+              <%= @user.firstname %> <%= @user.lastname %>
+            <% end %>
+          </td>
           <td><%= link_to "Edit", edit_question_path(q.id), class: "btn btn-default btn-block" %></td>
         </tr>
       <% end %>

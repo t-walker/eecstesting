@@ -14,6 +14,8 @@
   <div class="field">
     <%= f.label :prompt %><br>
     <%= f.text_field :prompt, class: "form-control" %>
+    <%= f.hidden_field :user_id, value: @user.id %>
+
   </div>
   <div class="field">
     <%= f.label :possible1, "Possible Answer 1" %><br>

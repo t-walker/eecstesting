@@ -9,6 +9,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
@@ -31,7 +32,10 @@ gem 'groupdate'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 
+# cancancan for authorization
 gem 'cancancan'
+# observer for observation
+gem 'rails-observers'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -46,5 +50,4 @@ end
 group :production do
   # Use postgres server
   gem 'pg'
-  gem 'rails_stdout_logging'
 end

@@ -11,7 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20151028214137) do
 
   create_table "notifications", force: :cascade do |t|
@@ -24,9 +23,6 @@ ActiveRecord::Schema.define(version: 20151028214137) do
   end
 
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
-=======
-ActiveRecord::Schema.define(version: 20151026211037) do
->>>>>>> master
 
   create_table "questions", force: :cascade do |t|
     t.string   "prompt",        limit: 255
@@ -38,45 +34,29 @@ ActiveRecord::Schema.define(version: 20151026211037) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.string   "question_type", limit: 255
-<<<<<<< HEAD
     t.integer  "user_id",       limit: 4
   end
 
   add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree
 
-=======
-  end
-
->>>>>>> master
   create_table "questions_testversions", id: false, force: :cascade do |t|
     t.integer "testversion_id", limit: 4
     t.integer "question_id",    limit: 4
   end
 
   create_table "responses", force: :cascade do |t|
-    t.integer  "user_id",        limit: 4
-    t.integer  "usertest_id",    limit: 4
-    t.string   "response_data",  limit: 255
+    t.integer  "user_id",       limit: 4
+    t.integer  "usertest_id",   limit: 4
+    t.string   "response_data", limit: 255
     t.boolean  "correct"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.integer  "question_id_id", limit: 4
-    t.integer  "question_id",    limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "question_id",   limit: 4
   end
 
   add_index "responses", ["question_id"], name: "index_responses_on_question_id", using: :btree
-  add_index "responses", ["question_id_id"], name: "index_responses_on_question_id_id", using: :btree
   add_index "responses", ["user_id"], name: "index_responses_on_user_id", using: :btree
   add_index "responses", ["usertest_id"], name: "index_responses_on_usertest_id", using: :btree
-
-  create_table "test_settings", force: :cascade do |t|
-    t.string   "version",          limit: 255
-    t.datetime "startdate"
-    t.datetime "enddate"
-    t.integer  "attempts_allowed", limit: 4
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-  end
 
   create_table "testversions", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -123,11 +103,12 @@ ActiveRecord::Schema.define(version: 20151026211037) do
   add_index "usertests", ["testversion_id"], name: "index_usertests_on_testversion_id", using: :btree
   add_index "usertests", ["user_id"], name: "index_usertests_on_user_id", using: :btree
 
-<<<<<<< HEAD
   add_foreign_key "notifications", "users"
   add_foreign_key "questions", "users"
-=======
->>>>>>> master
+  add_foreign_key "responses", "questions"
+  add_foreign_key "responses", "users"
+  add_foreign_key "responses", "usertests"
   add_foreign_key "testversions", "users"
   add_foreign_key "usertests", "testversions"
+  add_foreign_key "usertests", "users"
 end

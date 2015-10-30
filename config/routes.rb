@@ -10,8 +10,7 @@ Rails.application.routes.draw do
   resources :usertests
   resources :notifications
   resources :testversions
-
->>>>>>> master
+  
   get 'questions/index'
   get 'questions/show'
   get 'questions/new'

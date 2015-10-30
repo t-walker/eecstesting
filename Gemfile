@@ -49,5 +49,5 @@ end
 group :production do
   # Use postgres server
   gem 'pg'
-  gem 'rails_12factor'
+  gem 'rails_12factor', '0.0.2'
 end

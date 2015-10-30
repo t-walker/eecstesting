@@ -1,4 +1,4 @@
-<% if @usertest.testversion %>
+<% if @usertest.testversion and @usertest.testversion.open? %>
 <h2>You are taking the <%= @usertest.testversion.title %> test.</h2>
 <%= render 'form' %>
 

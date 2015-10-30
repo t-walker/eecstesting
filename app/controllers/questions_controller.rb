@@ -64,6 +64,6 @@ private
   end
 
   def question_params
-    params.require(:question).permit(:prompt, :possible1, :possible2, :possible3, :possible4, :correct, :question_type, :user_id)
+    params.require(:question).permit(:prompt, :detail, :possible1, :possible2, :possible3, :possible4, :correct, :question_type, :user_id)
   end
 end

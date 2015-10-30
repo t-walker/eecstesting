@@ -1,5 +1,6 @@
 <h1>Question</h1>
     <h3><%= @question.prompt %></h3>
+    <blockquote><%= @question.detail if @question.detail %></blockquote>
       <% if @question.possible1 %>
     <p>A)
         <%= @question.possible1 %>

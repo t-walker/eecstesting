@@ -14,7 +14,6 @@
       <% @questions.each do |q| %>
         <tr>
           <td><%= q.prompt %></td>
-          <% end %>
           <td>
             <% @user = User.find_by_id(q.user_id) %>
             <% if @user %>

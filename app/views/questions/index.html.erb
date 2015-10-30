@@ -7,36 +7,13 @@
   <div class="col-md-12">
     <table style = "color: black;" class="table">
       <tr>
-        <th>Prompt</th>
-        <th>Option 1</th>
-        <th>Option 2</th>
-        <th>Option 3</th>
-        <th>Option 4</th>
-        <th>Correct Answer</th>
+        <th>Prompt</th>>
         <th>Author</th>
         <th>Edit</th>
       </tr>
       <% @questions.each do |q| %>
         <tr>
           <td><%= q.prompt %></td>
-          <% if q.possible1 %>
-          <td><%= q.possible1 %></td>
-          <% end %>
-          <% if q.possible2 %>
-          <td><%= q.possible2 %></td>
-          <% end %>
-          <% if q.possible3 %>
-          <td><%= q.possible3 %></td>
-          <% else %>
-          <td></td>
-          <% end %>
-          <% if q.possible4 %>
-          <td><%= q.possible4 %></td>
-          <% else %>
-          <td></td>
-          <% end %>
-          <% if q.correct %>
-          <td><%= q.correct %></td>
           <% end %>
           <td>
             <% @user = User.find_by_id(q.user_id) %>
@@ -49,5 +26,6 @@
       <% end %>
     </table>
     <%= link_to "Create New Question", new_question_path, class: "btn btn-primary"%>
+    <%= link_to "Question Edit Log", notifications_path, class: "btn btn-primary" %>
   </div>
 </div>

@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :usertests, dependent: :destroy
   has_many :responses, through: :usertests
   has_many :questions
-  
+
   validates :firstname, presence: true
   validates :lastname, presence: true
   validates :studentid, presence: true, length: { is: 8 }, uniqueness: true
@@ -18,6 +18,14 @@ class User < ActiveRecord::Base
 
   def admin?
     if role == "admin"
+      true
+    else
+      false
+    end
+  end
+
+  def advisor?
+    if role == "advisor"
       true
     else
       false

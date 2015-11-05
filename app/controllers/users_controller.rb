@@ -20,4 +20,16 @@ class UsersController < ApplicationController
     user.update( :role => "student" )
     redirect_to users_url
   end
+
+  def make_advisor
+    user = User.find params[:id]
+    user.update( :role => "advisor" )
+    redirect_to users_url
+  end
+
+  def remove_advisor
+    user = User.find params[:id]
+    user.update( :role => "student" )
+    redirect_to users_url
+  end
 end

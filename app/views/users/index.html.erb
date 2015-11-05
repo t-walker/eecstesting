@@ -4,18 +4,32 @@
       <tr>
         <th>Name</th>
         <th>E-mail</th>
-
-        <th>Change Admin</th>
+        <% if current_user.advisor? || current_user.admin? %>
+          <th>Change Advisor</th>
+        <% end %>
+        <% if current_user.admin? %>
+          <th>Change Admin</th>
+        <% end %>
       </tr>
       <% @users.each do |u| %>
       <tr>
         <td><%= u.firstname %> <%= u.lastname %></td>
         <td><%= u.email %></td>
-
-        <% if !u.admin? %>
-        <td><%= button_to "Make Admin", make_admin_path(id: u.id) , method: :put, class: "btn btn-primary btn-block" %></td>
+        <% if !u.admin? && !u.advisor? %>
+        <td><%= button_to "Make Advisor", make_advisor_path(id: u.id) , method: :put, class: "btn btn-primary btn-block" %></td>
+        <% elsif !u.advisor? && u.admin? %>
+        <td><%= button_to "Make Advisor", make_admin_path(id: u.id) , method: :put, class: "btn btn-primary btn-block", disabled: true%></td>
         <% else %>
-        <td><%= button_to "Remove Admin", remove_admin_path(id: u.id) , method: :put, class: "btn btn-danger btn-block" %></td>
+        <td><%= button_to "Remove Advisor", remove_advisor_path(id: u.id) , method: :put, class: "btn btn-danger btn-block" %></td>
+        <% end %>
+        <% if current_user.admin? %>
+          <% if !u.admin? && !u.advisor? %>
+          <td><%= button_to "Make Admin", make_admin_path(id: u.id) , method: :put, class: "btn btn-primary btn-block" %></td>
+          <% elsif !u.admin? && u.advisor? %>
+          <td><%= button_to "Make Admin", make_admin_path(id: u.id) , method: :put, class: "btn btn-primary btn-block", disabled: true%></td>
+          <% else %>
+          <td><%= button_to "Remove Admin", remove_admin_path(id: u.id) , method: :put, class: "btn btn-danger btn-block" %></td>
+          <% end %>
         <% end %>
       </tr>
       <% end %>

@@ -7,6 +7,9 @@ class Ability
        user ||= User.new
        if user.admin?
          can :manage, :all
+       elsif user.advisor?
+         can :manage, Usertest
+         can :read, User
        else
          can :create, Usertest
        end

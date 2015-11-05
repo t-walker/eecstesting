@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :usertests
   resources :notifications
   resources :testversions
-  
+
   get 'questions/index'
   get 'questions/show'
   get 'questions/new'
@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   put 'addadmin/:id' => 'users#make_admin', :as => "make_admin"
   put 'removeadmin/:id' => 'users#remove_admin', :as => "remove_admin"
+  put 'makeadvisor/:id' => 'users#make_advisor', :as => "make_advisor"
+  put 'removeadvisor/:id' => 'users#remove_advisor', :as => "remove_advisor"
 
   root 'home#index'
 end

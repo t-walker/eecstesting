@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   load_and_authorize_resource
   def index
-    @users = User.order('users.role ASC').all
+    @users = User.order('users.role ASC').order('users.created_at').all
     @current = Time.now
     respond_to do |format|
       format.html

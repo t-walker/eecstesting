@@ -1,6 +1,4 @@
-<table class="table" style="color: black;">
-<tr>
-<td><%= response.radio_button :response_data, question.possible1 %> <%= question.possible1 %></td>
-<td><%= response.radio_button :response_data, question.possible2 %> <%= question.possible2 %></td>
-</tr>
-</table
+<div class="form-group">
+  <h5><%= response.radio_button :response_data, question.possible1 %> <%= question.possible1 %></h5></label>
+  <h5><%= response.radio_button :response_data, question.possible2 %> <%= question.possible2 %></h5></label>
+</div>

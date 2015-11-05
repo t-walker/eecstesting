@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>EECS Testing</title>
-  <%= stylesheet_link_tag "simplex", :media => "all" %>
+  <%= stylesheet_link_tag "superhero", :media => "all" %>
   <%= yield(:page_stylesheet) if content_for?(:page_stylesheet) %>
   <%= csrf_meta_tags %>
   <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
@@ -55,6 +55,6 @@
 <!-- Javascripts
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<%= javascript_include_tag "simplex" %>
+<%= javascript_include_tag "superhero" %>
 <%= yield(:page_javascript) if content_for?(:page_javascript) %>
 </html>

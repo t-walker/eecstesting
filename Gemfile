@@ -27,9 +27,12 @@ gem 'unicorn'
 # Use Chartkick
 gem 'chartkick'
 gem 'groupdate'
-# Boostrap for design
-gem 'bootstrap-sass', '~> 3.2.0'
+# twitter bootstrap css & javascript toolkit
+gem 'twitter-bootswatch-rails', '~> 3.3.4'
+# twitter bootstrap helpers gem, e.g., alerts etc...
+gem 'twitter-bootswatch-rails-helpers'
 gem 'autoprefixer-rails'
+gem 'therubyracer'
 
 # cancancan for authorization
 gem 'cancancan'

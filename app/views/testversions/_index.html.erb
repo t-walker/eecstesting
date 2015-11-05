@@ -1,15 +1,15 @@
-<table class="table" style="color:black;">
+<table class="table">
   <tr>
-    <th>Title</th>
-    <th>Start Date</th>
-    <th>End Date</th>
-    <th>Edit</th>
+    <th><h4>Title</h4></th>
+    <th><h4>Start Date</h4></th>
+    <th><h4>End Date</h4></th>
+    <th><h4>Edit</h4></th>
   </tr>
 <% testversions.each do |tv| %>
   <tr>
-    <td><%= tv.title %></td>
-    <td><%= tv.startdate != nil ? tv.startdate.strftime("%B %d %Y") : "" %></td>
-    <td><%= tv.enddate != nil ? tv.enddate.strftime("%B %d %Y") : "" %></td>
+    <td><h5><%= tv.title %></h5></td>
+    <td><h5><%= tv.startdate != nil ? tv.startdate.strftime("%B %d %Y") : "" %></h5></td>
+    <td><h5><%= tv.enddate != nil ? tv.enddate.strftime("%B %d %Y") : "" %></h5></td>
     <% if Usertest.where(testversion_id: tv.id).count == 0 %>
     <td><%= link_to "Edit", edit_testversion_path(tv.id), class: "btn btn-default" %></td>
     <% else %>
@@ -18,4 +18,4 @@
   </tr>
   <% end %>
 </table>
-<%= link_to "New Version", new_testversion_path %>
+<%= button_to "New Version", new_testversion_path, class: "btn btn-info", method: :get %>

@@ -5,33 +5,36 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <table style = "color: black;" class="table">
-      <tr>
-        <th>Prompt</th>
-        <th>Author</th>
-        <th>Edit</th>
-        <th>Delete</th>
-
-      </tr>
-      <% @questions.each do |q| %>
+    <div class="panel">
+      <div class="panel-body">
+      <table class="table">
         <tr>
-          <td><%= q.prompt %></td>
-          <td>
-            <% @user = User.find_by_id(q.user_id) %>
-            <% if @user %>
-              <%= @user.firstname %> <%= @user.lastname %>
-            <% end %>
-          </td>
-          <td><%= link_to "Edit", edit_question_path(q.id), class: "btn btn-default btn-block" %></td>
-          <% !if q.used? %>
-            <td><%= link_to "delete", question_path(q.id), class: "btn btn-danger btn-block", method: :delete,  data: { confirm: 'Are you certain you want to delete this?' }%></td>
-          <% else %>
-            <td><%= link_to "delete","", class: "btn btn-danger", disabled: true %></td>
-          <% end %>
+          <th><h4>Prompt</h4></th>
+          <th><h4>Author</h4></th>
+          <th><h4>Edit</h4></th>
+          <th><h4>Delete</h4></th>
         </tr>
-      <% end %>
-    </table>
-    <%= link_to "Create New Question", new_question_path, class: "btn btn-primary"%>
-    <%= link_to "Question Edit Log", notifications_path, class: "btn btn-primary" %>
+        <% @questions.each do |q| %>
+          <tr>
+            <td><h5><%= q.prompt %></h5></td>
+            <td>
+              <% @user = User.find_by_id(q.user_id) %>
+              <% if @user %>
+                <h5><%= @user.firstname %> <%= @user.lastname %></h5>
+              <% end %>
+            </td>
+            <td><%= link_to "Edit", edit_question_path(q.id), class: "btn btn-primary btn-block" %></td>
+            <% !if q.used? %>
+              <td><%= link_to "delete", question_path(q.id), class: "btn btn-danger btn-block", method: :delete,  data: { confirm: 'Are you certain you want to delete this?' }%></td>
+            <% else %>
+              <td><%= link_to "delete","", class: "btn btn-danger btn-block", disabled: true %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+      <%= link_to "Create New Question", new_question_path, class: "btn btn-info"%>
+      <%= link_to "Question Edit Log", notifications_path, class: "btn btn-info" %>
+    </div>
+    </div>
   </div>
 </div>

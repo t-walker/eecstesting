@@ -1,34 +1,49 @@
 <div class="row">
+  <div class="col-md-12">
+    <h1>User Dashboard</h1>
+  </div>
+</div>
+<div class="row">
   <div class="col-md-6">
-    <table class="table" style="color: black;">
-      <tr>
-        <th>Name</th>
-        <th>E-mail</th>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Registered Users</h3>
+      </div>
+      <div class="panel-body">
+      <table class="table table-striped">
+        <tr>
+          <th>Name</th>
+          <th>E-mail</th>
+          <th>Change Admin</th>
+        </tr>
+        <% @users.each do |u| %>
+        <tr>
+          <td><h5><%= u.firstname %> <%= u.lastname %></h5></td>
+          <td><h5><%= u.email %></h5></td>
 
-        <th>Change Admin</th>
-      </tr>
-      <% @users.each do |u| %>
-      <tr>
-        <td><%= u.firstname %> <%= u.lastname %></td>
-        <td><%= u.email %></td>
-
-        <% if !u.admin? %>
-        <td><%= button_to "Make Admin", make_admin_path(id: u.id) , method: :put, class: "btn btn-primary btn-block" %></td>
-        <% else %>
-        <td><%= button_to "Remove Admin", remove_admin_path(id: u.id) , method: :put, class: "btn btn-danger btn-block" %></td>
+          <% if !u.admin? %>
+          <td><%= button_to "Make Admin", make_admin_path(id: u.id) , method: :put, class: "btn btn-primary btn-block" %></td>
+          <% else %>
+          <td><%= button_to "Remove Admin", remove_admin_path(id: u.id) , method: :put, class: "btn btn-danger btn-block" %></td>
+          <% end %>
+        </tr>
         <% end %>
-      </tr>
-      <% end %>
-    </table>
-  <%= link_to 'Download User data as CSV', users_path(format: :csv) %>
+      </table>
+    <%= link_to 'Download User data as CSV', users_path(format: :csv), class: "btn btn-info" %>
+    </div>
+    </div>
   </div>
   <div class="col-md-6">
-    <div class="panel panel-default" style="vertical-align: text-bottom;">
-      <h4 style="text-align: center; padding-top: 20px; margin-bottom: 0px;">Users Registered by Date</h4>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Users Registered by Date</h3>
+    </div>
+    <div class="panel-body">
       <%= area_chart User.group_by_day(:created_at, format: "%b %d %Y").count, {library: {legend: 'none',
                                                                        titlePosition: 'none',
                                                                        hAxis: {title: "Date"},
                                                                        vAxis: {title: "# of Users Registered"}}, discrete: true} %>
     </div>
+  </div>
   </div>
 </div>

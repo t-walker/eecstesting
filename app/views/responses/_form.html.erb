@@ -1,10 +1,19 @@
-<h4><%= question.prompt %>?</h4>
-<% if question.question_type == "shortans" %>
-  <%= render 'responses/shortans',  question:  question, response: response %>
-<% elsif question.question_type == "longans" %>
-  <%= render 'responses/longans',  question:  question, response: response %>
-<% elsif question.question_type == "multchoice" %>
-  <%= render 'responses/multchoice',  question: question, response: response %>
-<% elsif question.question_type == "truefalse" %>
-  <%= render 'responses/truefalse',  question:  question, response: response %>
-<% end %>
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-primary">
+      <div class="panel-heading"><h3 class="panel-title"><%= question.prompt %>?</h3></div>
+      <div class="panel-body">
+        <% if defined?(question.details) %><blockquote><%= question.details if defined?(question.details) %></blockquote><% end %>
+      <% if question.question_type == "shortans" %>
+        <%= render 'responses/shortans',  question:  question, response: response, prompt: question.prompt %>
+      <% elsif question.question_type == "longans" %>
+        <%= render 'responses/longans',  question:  question, response: response, prompt: question.prompt %>
+      <% elsif question.question_type == "multchoice" %>
+        <%= render 'responses/multchoice',  question: question, response: response, prompt: question.prompt %>
+      <% elsif question.question_type == "truefalse" %>
+        <%= render 'responses/truefalse',  question:  question, response: response, prompt: question.prompt %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>

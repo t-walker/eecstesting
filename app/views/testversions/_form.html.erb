@@ -1,10 +1,12 @@
-<script>
+<% content_for :page_javascript do %>
+<script type="text/javascript">
 $(function() {
   $('#datepicker0').datepicker()
   $('#datepicker1').datepicker();
 
 });
 </script>
+<% end %>
 <div class="row">
   <div class="col-md-4">
     <h2>New Test Version</h2>
@@ -15,15 +17,15 @@ $(function() {
     <div class="form-horizontal">
       <%= form_for(@testversion) do |f|  %>
         <div class="form-group">
-          <%= f.label :title %>
+          <%= f.label :title, style: "font-size: medium" %>
           <%= f.text_field :title, class: "form-control" %>
         </div>
         <div class="form-group">
-          <%= f.label :startdate %>
+          <%= f.label :startdate, style: "font-size: medium" %>
           <%= f.text_field :startdate, class: "form-control", id: "datepicker0" %>
         </div>
         <div class="form-group">
-          <%= f.label :endate %>
+          <%= f.label :endate, style: "font-size: medium" %>
           <%= f.text_field :enddate, class: "form-control", id: "datepicker1"%>
         </div>
         <div class="form-group">
@@ -31,17 +33,17 @@ $(function() {
         </div>
         <% for question in @questions %>
             <div class="form-group">
-                <label><%= check_box_tag "testversion[question_ids][]", question.id, @testversion.questions.include?(question) %>
-                <%= question.prompt %></label>
+                <label><span style="font-size: medium;"><%= check_box_tag "testversion[question_ids][]", question.id, @testversion.questions.include?(question) %>
+                <%= question.prompt %>?</span></label>
             </div>
         <% end %>
         <div class="form-group">
           <% if !Testversion.active_tests? %>
-            <%= f.label :isopen, "Open?" %>
-            <%= f.select(:isopen, @options, :prompt => 'Select', class: "form-control") %>
+              <%= f.label :isopen, "Open?" %>
+              <%= f.select :isopen, @options, {}, {class: "form-control"} %>
           <% else %>
-            <%= f.label :isopen, "Open?" %> <small>Only one active test allowed at a time.</small><br />
-            <%= f.select(:isopen, @options, :prompt => 'Select', class: "form-control", disabled: true) %>
+              <%= f.label :isopen, "Open?" %> <small>Only one active test allowed at a time.</small><br />
+              <%= f.select :isopen, @options, {}, {class: "form-control", disabled: true} %>
           <% end %>
         </div>
         <div class="form-group">

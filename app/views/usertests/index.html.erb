@@ -1,27 +1,40 @@
 <div class="row">
+  <div class="col-md-12">
+    <h1>Test Dashboard</h1>
+  </div>
+</div>
+<div class="row">
   <div class="col-md-6">
-    <h2>Test Versions <small>Five Most Recent</small></h2>
-    <%= render partial: "testversions/index", locals: { testversions: @testversions }  %>
+    <div class="panel panel-default">
+      <div class="panel-heading"><h3 class="panel-title">Test Versions <small>Five Most Recent</small></h3></div>
+      <div class="panel-body">
+        <%= render partial: "testversions/index", locals: { testversions: @testversions }  %>
+      </div>
     </div>
+  </div>
   <div class="col-md-6">
-    <h2>Test Submissions <small>Five Most Recent</small></h2>
-    <table class="table" style="color:black;">
-      <tr>
-        <th>Student's Name</th>
-        <th>Score</th>
-        <th>Date Taken</th>
-        <th>View Test</th>
-      </tr>
-    <% @usertests.each do |ut| %>
-      <% @user = User.find_by_id(ut.user_id) %>
-      <tr>
-        <td><%= @user.firstname %> <%= @user.lastname %></td>
-        <td><%= ut.score %></td>
-        <td><%= ut.created_at.to_formatted_s(:long) %></td>
-        <td><%= button_to "View Test", usertest_path(ut.id), class: "btn btn-default btn-block", method: :get %></td>
-      </tr>
-      <% end %>
-    </table>
-    <%= link_to 'Download All as CSV', usertests_path(format: :csv) %>
+    <div class="panel panel-default">
+      <div class="panel-heading"><h3 class="panel-title">Test Versions <small>Five Most Recent</small></h3></div>
+      <div class="panel-body">
+        <table class="table">
+          <tr>
+            <th><h4>Student's Name</h4></th>
+            <th><h4>Score</h4></th>
+            <th><h4>Date Taken</h4></th>
+            <th><h4>View Test</h4></th>
+          </tr>
+        <% @usertests.each do |ut| %>
+          <% @user = User.find_by_id(ut.user_id) %>
+          <tr>
+            <td><h5><%= @user.firstname %> <%= @user.lastname %></h5></td>
+            <td><h5><%= ut.score %></h5></td>
+            <td><h5><%= ut.created_at.to_formatted_s(:long) %></h5></td>
+            <td><h5><%= button_to "View Test", usertest_path(ut.id), class: "btn btn-default btn-block", method: :get %></h5></td>
+          </tr>
+          <% end %>
+        </table>
+        <%= button_to 'Download All as CSV', usertests_path(format: :csv), class: "btn btn-primary" %>
+      </div>
+    </div>
   </div>
 </div>

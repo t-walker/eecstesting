@@ -1,22 +1,26 @@
-<h1><%= @student.firstname %>'s Test | <%= ((@usertest.score.fdiv(@responses.size.to_f)) * 100).round(2) %>%</h1>
-<table class="table" style="color: black;">
-  <tr>
-    <th>Question</th>
-    <th>Student's Answer</th>
-    <th>Correct Answer</th>
-    <th>Correct</th>
-  </tr>
-  <% @responses.each do |r| %>
-  <tr>
-   <% @question = Question.find_by_id(r.question_id) %>
-   <td><%= @question.prompt %>?</td>
-   <td><%= r.response_data %></td>
-   <td><%= @question.correct %></td>
-   <% if r.correct %>
-     <td style="color:green;">Correct!</td>
-   <% else %>
-     <td style="color:red;">Incorrect</td>
-   <% end %>
-  </tr>
-  <% end %>
-</table>
+<div class="row">
+  <div class="col-md-7">
+  <h1><%= @student.firstname %>'s Test | <%= ((@usertest.score.fdiv(@responses.size.to_f)) * 100).round(2) %>%</h1>
+  <table class="table">
+    <tr>
+      <th><h4>Question</h4></th>
+      <th><h4>Student's Answer</h4></th>
+      <th><h4>Correct Answer</h4></th>
+      <th><h4>Correct</h4></th>
+    </tr>
+    <% @responses.each do |r| %>
+    <tr>
+     <% @question = Question.find_by_id(r.question_id) %>
+     <td><h5><%= @question.prompt %>?</h5></td>
+     <td><h5><%= r.response_data %></h5></td>
+     <td><h5><%= @question.correct %></h5></td>
+     <% if r.correct %>
+       <td style="color:green;"><h5>Correct!</h5></td>
+     <% else %>
+       <td style="color:red;"><h5>Incorrect</h5></td>
+     <% end %>
+    </tr>
+    <% end %>
+  </table>
+  </div>
+</div>

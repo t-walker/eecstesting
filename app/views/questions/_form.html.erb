@@ -12,36 +12,36 @@
     </div>
   <% end %>
   <div class="from-group">
-    <%= f.label :prompt %><br>
+    <%= f.label :prompt, class: "control-label" %>
     <%= f.text_field :prompt, class: "form-control" %>
     <%= f.hidden_field :user_id, value: @user.id %>
   </div>
   <div class="from-group">
-    <%= f.label :detail %><br>
+    <%= f.label :detail, class: "control-label" %><br>
     <%= f.text_area :detail, class: "form-control" %>
   </div>
   <div class="from-group">
-    <%= f.label :possible1, "Possible Answer 1" %><br>
+    <%= f.label :possible1, "Possible Answer 1", class: "control-label" %><br>
     <%= f.text_field :possible1, class: "form-control" %>
   </div>
   <div class="from-group">
-    <%= f.label :possible2, "Possible Answer 2" %><br>
+    <%= f.label :possible2, "Possible Answer 2", class: "control-label" %><br>
     <%= f.text_field :possible2, class: "form-control" %>
   </div>
   <div class="from-group">
-    <%= f.label :possible3, "Possible Answer 3" %><br>
+    <%= f.label :possible3, "Possible Answer 3", class: "control-label" %><br>
     <%= f.text_field :possible3, class: "form-control" %>
   </div>
   <div class="from-group">
-    <%= f.label :possible4, "Possible Answer 4" %><br>
+    <%= f.label :possible4, "Possible Answer 4", class: "control-label" %><br>
     <%= f.text_field :possible4, class: "form-control" %>
   </div>
   <div class="from-group">
-    <%= f.label :correct, "Correct" %><br>
+    <%= f.label :correct, "Correct", class: "control-label" %><br>
     <%= f.text_field :correct, class: "form-control" %>
   </div>
   <div class="from-group">
-    <%= f.label :question_type, "Question Type" %><br>
+    <%= f.label :question_type, "Question Type", class: "control-label"  %><br>
     <%= f.select :question_type, ['shortans', 'longans', 'multchoice', 'truefalse'], class: "form-control" %>
   </div>
   <br />

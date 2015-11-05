@@ -1,3 +1,17 @@
+<% content_for :page_javascript do %>
+  <script type="text/javascript">
+  $('#open').click(function() {
+      if ($('#studentid').val() != "00000000")
+      {
+        $( "#student_message" ).html( "<b>Student ID was not found.</b><br />" );
+      }
+      $('#studentid_lookup').css('visibility', 'visible');
+  });
+  $('#close').click(function() {
+      $('#studentid_lookup').css('visibility', 'hidden');
+  });
+  </script>
+<% end %>
 <div class="row">
   <div class="col-md-12">
     <h1>Test Dashboard</h1>
@@ -6,13 +20,32 @@
 <div class="row">
   <div class="col-md-6">
     <div class="panel panel-default">
+      <div class="panel-heading"><h3 class="panel-title">Score Lookup</small></h3></div>
+      <div class="panel-body">
+        <label class="control-label">Student ID</label>
+        <div class="input-group">
+          <input type="text" class="form-control" id="studentid">
+          <span class="input-group-btn">
+            <button class="btn btn-default" id="open" name="open" type="button">Search</button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default" id="studentid_lookup" style="visibility: hidden">
+      <div class="panel-heading"><h3 class="panel-title"><%= %></small></h3></div>
+      <div class="panel-body">
+        <span id="student_message"></span>
+        <button class="btn btn-default" id="close" name="close" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-default">
       <div class="panel-heading"><h3 class="panel-title">Test Versions <small>Five Most Recent</small></h3></div>
       <div class="panel-body">
         <%= render partial: "testversions/index", locals: { testversions: @testversions }  %>
       </div>
     </div>
-  </div>
-  <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading"><h3 class="panel-title">Test Versions <small>Five Most Recent</small></h3></div>
       <div class="panel-body">

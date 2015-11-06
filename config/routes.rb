@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get 'questions/update'
   get 'questions/destroy'
 
+  get 'showtest' => 'usertests#showtest', :as => "showtest"
+
   put 'addadmin/:id' => 'users#make_admin', :as => "make_admin"
   put 'removeadmin/:id' => 'users#remove_admin', :as => "remove_admin"
   put 'makeadvisor/:id' => 'users#make_advisor', :as => "make_advisor"

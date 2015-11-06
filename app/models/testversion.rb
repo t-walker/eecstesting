@@ -16,8 +16,17 @@ class Testversion < ActiveRecord::Base
     end
   end
 
+  def active?
+    if isopen 
+      true
+    else
+      false
+    end
+  end
+
+
   def open?
-    if isopen && startdate <= Date.today && Date.today <= enddate
+    if isopen && (startdate <= Date.today && Date.today <= enddate)
       true
     else
       false

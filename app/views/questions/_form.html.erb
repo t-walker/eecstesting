@@ -1,9 +1,59 @@
+<% content_for :page_javascript do %>
+  <script type="text/javascript">
+  $( "#question_type" ).change(function() {
+    if ($( "#question_type" ).val() == "shortans" || $( "#question_type" ).val() == "longans")
+    {
+      $("#p1_l").hide();
+      $("#p2_l").hide();
+      $("#p3_l").hide();
+      $("#p4_l").hide();
+      $("#p1").hide();
+      $("#p1").text("");
+      $("#p2").hide();
+      $("#p2").text("");
+      $("#p3").hide();
+      $("#p3").text("");
+      $("#p4").hide();
+      $("#p4").text("");
+    }
+    if ($( "#question_type" ).val() == "multchoice")
+    {
+      $("#p1_l").show();
+      $("#p2_l").show();
+      $("#p3_l").show();
+      $("#p4_l").show();
+      $("#p1").show();
+      $("#p1").val("");
+      $("#p2").show();
+      $("#p2").val("");
+      $("#p3").show();
+      $("#p3").val("");
+      $("#p4").show();
+      $("#p4").val("");
+    }
+    if ($( "#question_type" ).val() == "truefalse")
+    {
+      $("#p1_l").show();
+      $("#p2_l").show();
+      $("#p3_l").hide();
+      $("#p4_l").hide();
+      $("#p1").show();
+      $("#p1").text("");
+      $("#p2").show();
+      $("#p2").text("");
+      $("#p3").hide();
+      $("#p3").text("");
+      $("#p4").hide();
+      $("#p4").text("");
+    }
+  });
+  </script>
+<% end %>
 <div class="form-horizontal">
 <%= form_for(@question) do |f| %>
   <% if @question.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
-
       <ul>
       <% @question.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -12,41 +62,39 @@
     </div>
   <% end %>
   <div class="from-group">
-    <%= f.label :prompt, class: "control-label" %>
+    <%= f.label :prompt, class: "control-label" %> <small>omit question marks</small><br />
     <%= f.text_field :prompt, class: "form-control" %>
     <%= f.hidden_field :user_id, value: @user.id %>
   </div>
   <div class="from-group">
-    <%= f.label :detail, class: "control-label" %><br>
+    <%= f.label :detail, class: "control-label" %>
     <%= f.text_area :detail, class: "form-control" %>
   </div>
   <div class="from-group">
-    <%= f.label :possible1, "Possible Answer 1", class: "control-label" %><br>
-    <%= f.text_field :possible1, class: "form-control" %>
+    <%= f.label :question_type, "Question Type", class: "control-label"  %>
+    <%= f.select :question_type, [['Short Answer','shortans'], ['Long Answer','longans'], ['Multiple Choice','multchoice'], ['True or False','truefalse']], {}, {class: "form-control", id: "question_type"} %>
   </div>
   <div class="from-group">
-    <%= f.label :possible2, "Possible Answer 2", class: "control-label" %><br>
-    <%= f.text_field :possible2, class: "form-control" %>
+    <%= f.label :possible1, "Possible Answer 1", class: "control-label", id: "p1_l" %>
+    <%= f.text_field :possible1, class: "form-control", id: "p1" %>
   </div>
   <div class="from-group">
-    <%= f.label :possible3, "Possible Answer 3", class: "control-label" %><br>
-    <%= f.text_field :possible3, class: "form-control" %>
+    <%= f.label :possible2, "Possible Answer 2", class: "control-label", id: "p2_l" %>
+    <%= f.text_field :possible2, class: "form-control", id: "p2" %>
   </div>
   <div class="from-group">
-    <%= f.label :possible4, "Possible Answer 4", class: "control-label" %><br>
-    <%= f.text_field :possible4, class: "form-control" %>
+    <%= f.label :possible3, "Possible Answer 3", class: "control-label", id: "p3_l" %>
+    <%= f.text_field :possible3, class: "form-control", id: "p3" %>
   </div>
   <div class="from-group">
-    <%= f.label :correct, "Correct", class: "control-label" %><br>
+    <%= f.label :possible4, "Possible Answer 4", class: "control-label", id: "p4_l" %>
+    <%= f.text_field :possible4, class: "form-control", id: "p4" %>
+  </div>
+  <div class="from-group">
+    <%= f.label :correct, "Correct", class: "control-label" %>
     <%= f.text_field :correct, class: "form-control" %>
   </div>
-  <div class="from-group">
-    <%= f.label :question_type, "Question Type", class: "control-label"  %><br>
-    <%= f.select :question_type, ['shortans', 'longans', 'multchoice', 'truefalse'], class: "form-control" %>
-  </div>
   <br />
-  <div class="form-group">
-    <%= f.submit "Submit", class: "btn btn-primary pull-left" %>
-  </div>
+  <%= f.submit "Submit", class: "btn btn-primary" %>
 <% end %>
 </div>

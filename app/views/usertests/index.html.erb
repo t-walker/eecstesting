@@ -28,8 +28,8 @@
           <tr>
             <td><h5><%= @user.firstname %> <%= @user.lastname %></h5></td>
             <td><h5><%= ut.score %></h5></td>
-            <td><h5><%= ut.created_at.to_formatted_s(:long) %></h5></td>
-            <td><h5><%= button_to "View Test", usertest_path(ut.id), class: "btn btn-default btn-block", method: :get %></h5></td>
+            <td><h5><%= ut.created_at.strftime("%B %d %Y")  %></h5></td>
+            <td><%= button_to "View Test", usertest_path(ut.id), class: "btn btn-info", method: :get %></td>
           </tr>
           <% end %>
         </table>

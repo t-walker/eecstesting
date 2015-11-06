@@ -6,6 +6,14 @@
     <th><h4>Edit</h4></th>
   </tr>
 <% testversions.each do |tv| %>
+  <% if tv.active? %>
+    <tr class="success">
+      <td><h5><%= tv.title %></h5></td>
+      <td><h5><%= tv.startdate != nil ? tv.startdate.strftime("%B %d %Y") : "" %></h5></td>
+      <td><h5><%= tv.enddate != nil ? tv.enddate.strftime("%B %d %Y") : "" %></h5></td>
+      <td><%= link_to "Edit", edit_testversion_path(tv.id), class: "btn btn-info" %></td>
+    </tr>
+  <% else %>
   <tr>
     <td><h5><%= tv.title %></h5></td>
     <td><h5><%= tv.startdate != nil ? tv.startdate.strftime("%B %d %Y") : "" %></h5></td>
@@ -13,5 +21,6 @@
     <td><%= link_to "Edit", edit_testversion_path(tv.id), class: "btn btn-info" %></td>
   </tr>
   <% end %>
+<% end %>
 </table>
 <%= button_to "New Version", new_testversion_path, class: "btn btn-success", method: :get %>

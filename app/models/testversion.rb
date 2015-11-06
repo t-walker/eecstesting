@@ -6,10 +6,8 @@ class Testversion < ActiveRecord::Base
   validates :startdate, presence: true
   validates :enddate, presence: true
 
-  scope :active, ->{where(:isopen => true)}
-
   def self.active_tests?
-    if Testversion.active.size > 1
+    if Testversion.where(isopen: true).count > 0
       return true
     else
       return false
@@ -17,7 +15,7 @@ class Testversion < ActiveRecord::Base
   end
 
   def active?
-    if isopen 
+    if isopen
       true
     else
       false

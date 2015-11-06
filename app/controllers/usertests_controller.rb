@@ -12,6 +12,16 @@ class UsertestsController < ApplicationController
     end
   end
 
+  def showtest
+    @student = User.find_by_studentid(params[:studentid])
+    puts "\n\n\n\n" + params[:studentid] + "\n\n\n"
+    @usertest = @student.usertests.first
+    @responses = @usertest.responses
+    respond_to do |format|
+      format.html { render partial: "showtest"}
+    end
+  end
+
   def show
     @usertest = Usertest.find(params[:id])
     @student = User.find_by_id(@usertest.user_id)

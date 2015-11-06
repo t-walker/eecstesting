@@ -1,10 +1,17 @@
 <% content_for :page_javascript do %>
   <script type="text/javascript">
   $('#open').click(function() {
-      if ($('#studentid').val() != "00000000")
-      {
-        $( "#student_message" ).html( "<b>Student ID was not found.</b><br />" );
-      }
+      var studentid = $('#studentid').val();
+      var test_url = "/showtest?studentid=" + studentid;
+      $.ajax({type: "GET",
+        url: test_url,
+        success: function (result) {
+          $("#results").html(result);
+        },
+        error: function (result) {
+          $("#results").html("<h4>Error: Student ID not found.</h4>");
+        }
+      })
       $('#studentid_lookup').css('visibility', 'visible');
   });
   $('#close').click(function() {
@@ -34,7 +41,8 @@
     <div class="panel panel-default" id="studentid_lookup" style="visibility: hidden">
       <div class="panel-heading"><h3 class="panel-title"><%= %></small></h3></div>
       <div class="panel-body">
-        <span id="student_message"></span>
+        <div id="results">
+        </div>
         <button class="btn btn-default" id="close" name="close" type="button">Close</button>
       </div>
     </div>

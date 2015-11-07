@@ -50,8 +50,8 @@ class TestversionsController < ApplicationController
 
   def options_for_open
     [
-      ['True',true],
-      ['False',false]
+      ['True','1'],
+      ['False','0']
     ]
   end
 

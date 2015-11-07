@@ -11,25 +11,25 @@ class UsersController < ApplicationController
 
   def make_admin
     user = User.find params[:id]
-    user.update( :role => "admin" )
+    user.update( :role => 'admin' )
     redirect_to users_url
   end
 
   def remove_admin
     user = User.find params[:id]
-    user.update( :role => "student" )
+    user.update( :role => 'student' )
     redirect_to users_url
   end
 
   def make_advisor
     user = User.find params[:id]
-    user.update( :role => "advisor" )
+    user.update( :role => 'advisor' )
     redirect_to users_url
   end
 
   def remove_advisor
     user = User.find params[:id]
-    user.update( :role => "student" )
+    user.update( :role => 'student' )
     redirect_to users_url
   end
 end

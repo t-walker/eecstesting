@@ -3,7 +3,9 @@
     <th><h4>Title</h4></th>
     <th><h4>Start Date</h4></th>
     <th><h4>End Date</h4></th>
+    <% if current_user.admin? %>
     <th><h4>Edit</h4></th>
+    <% end %>
   </tr>
 <% testversions.each do |tv| %>
   <% if tv.active? %>
@@ -11,16 +13,22 @@
       <td><h5><%= tv.title %></h5></td>
       <td><h5><%= tv.startdate != nil ? tv.startdate.strftime("%B %d %Y") : "" %></h5></td>
       <td><h5><%= tv.enddate != nil ? tv.enddate.strftime("%B %d %Y") : "" %></h5></td>
-      <td><%= link_to "Edit", edit_testversion_path(tv.id), class: "btn btn-info" %></td>
+      <% if current_user.admin? %>
+        <td><%= link_to "Edit", edit_testversion_path(tv.id), class: "btn btn-info" %></td>
+      <% end %>
     </tr>
   <% else %>
   <tr>
     <td><h5><%= tv.title %></h5></td>
     <td><h5><%= tv.startdate != nil ? tv.startdate.strftime("%B %d %Y") : "" %></h5></td>
     <td><h5><%= tv.enddate != nil ? tv.enddate.strftime("%B %d %Y") : "" %></h5></td>
-    <td><%= link_to "Edit", edit_testversion_path(tv.id), class: "btn btn-info" %></td>
+    <% if current_user.admin? %>
+      <td><%= link_to "Edit", edit_testversion_path(tv.id), class: "btn btn-info" %></td>
+    <% end %>
   </tr>
   <% end %>
 <% end %>
 </table>
-<%= button_to "New Version", new_testversion_path, class: "btn btn-success", method: :get %>
+<% if current_user.admin? %>
+  <%= button_to "New Version", new_testversion_path, class: "btn btn-success", method: :get %>
+<% end %>

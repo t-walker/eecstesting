@@ -52,6 +52,7 @@ $(function() {
           <% if Testversion.active_tests? && !@testversion.active? %>
               <%= f.label :isopen, "Open?" %> <small>Only one active test allowed at a time.</small><br />
               <%= f.select :isopen, @options, {:selected => 0}, {class: "form-control", disabled: true} %>
+              <%= f.hidden_field :isopen, value: 0 %>
           <% else %>
               <%= f.label :isopen, "Open?" %>
               <%= f.select :isopen, @options, {}, {class: "form-control"} %>

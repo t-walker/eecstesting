@@ -74,7 +74,7 @@
           <% @user = User.find_by_id(ut.user_id) %>
           <tr>
             <td><h5><%= @user.firstname %> <%= @user.lastname %></h5></td>
-            <td><h5><%= ut.score %></h5></td>
+            <td><h5><%= ut.score %>%</h5></td>
             <td><h5><%= ut.created_at.strftime("%B %d %Y")  %></h5></td>
             <td><%= button_to "View Test", usertest_path(ut.id), class: "btn btn-info", method: :get %></td>
           </tr>

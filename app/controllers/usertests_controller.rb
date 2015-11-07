@@ -79,10 +79,10 @@ private
     correct = 0
     @usertest.responses.each do |r|
       @question = Question.find_by_id(r.question_id)
-      if r.response_data == @question.correct
+      if r.response_data.strip.downcase == @question.correct.strip.downcase
         r.correct = true
         correct += 1
-      elsif @question.question_type == "shortans" || @question.question_type == "longans"
+      elsif @question.question_type == "longans"
         correct += 1
       else
         r.correct = false

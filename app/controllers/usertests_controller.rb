@@ -5,7 +5,7 @@ class UsertestsController < ApplicationController
 
   def index
     @usertests = Usertest.last(5)
-    @testversions = Testversion.last(5)
+    @testversions = Testversion.order('testversions.isopen DESC').last(5)
     respond_to do |format|
       format.html
       format.csv { send_data @usertests.to_csv}

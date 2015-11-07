@@ -29,7 +29,7 @@
     <div class="panel panel-default">
       <div class="panel-heading"><h3 class="panel-title">Test Scores</small></h3></div>
       <div class="panel-body">
-        <%= column_chart Usertest.group(:user_id).sum(:score) %>
+        <%= column_chart Usertest.group(:score).count %>
       </div>
     </div>
     <div class="panel panel-default">

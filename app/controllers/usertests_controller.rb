@@ -88,7 +88,8 @@ private
         r.correct = false
       end
     end
-    @usertest.score = correct
+
+    @usertest.score = ((correct.to_f / (@usertest.responses.size).to_f) * 100)
   end
 
   def set_usertest

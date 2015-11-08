@@ -67,9 +67,9 @@
       </div>
       <div class="panel-body">
         <div style="height: 290px; overlow: scroll;">
-          <h4>Number of Admins:  <small><%= User.where(role: "admin").count %></small></h4>
-          <h4>Number of Advisors:  <small><%= User.where(role: "advisor").count %></small></h4>
-          <h4>Number of Students:  <small><%= User.where(role: "student").count %></small></h4>
+          <h4>Number of Admins:  <%= User.where(role: "admin").count %></h4>
+          <h4>Number of Advisors:  <%= User.where(role: "advisor").count %></h4>
+          <h4>Number of Students:  <%= User.where(role: "student").count %></h4>
 
         </div>
       </div>

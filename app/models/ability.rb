@@ -9,7 +9,7 @@ class Ability
          can :manage, :all
        elsif user.advisor?
          can :manage, Usertest
-         can :read, User
+         can :manage, User
        else
          can :create, Usertest
        end

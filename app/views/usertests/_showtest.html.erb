@@ -1,0 +1,5 @@
+<h4><%= @student.firstname %> <%= @student.lastname %></h4>
+<h5><b>Date Taken:</b> <%= @usertest.created_at.to_formatted_s(:long) %></h5>
+<h5><b>Score:</b> <%= @usertest.score %>%</h5>
+<h5><b>Recommendation:</b> NULL</h5>
+<%= link_to "View Test", usertest_path(@usertest.id) %>

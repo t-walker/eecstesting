@@ -3,7 +3,7 @@
     <div class="panel panel-primary">
       <div class="panel-heading"><h3 class="panel-title"><%= question.prompt %>?</h3></div>
       <div class="panel-body">
-        <% if defined?(question.details) %><blockquote><%= question.details if defined?(question.details) %></blockquote><% end %>
+        <% if defined?(question.detail) %><blockquote><%= question.detail if defined?(question.detail) %></blockquote><% end %>
       <% if question.question_type == "shortans" %>
         <%= render 'responses/shortans',  question:  question, response: response, prompt: question.prompt %>
       <% elsif question.question_type == "longans" %>

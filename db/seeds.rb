@@ -7,8 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 Response.delete_all
 Usertest.delete_all
-Testversion.delete_all
 Notification.delete_all
+Question.delete_all
+Testversion.delete_all
 User.delete_all
 
 User.create!(email: 'tyler.p.walker@wsu.edu',

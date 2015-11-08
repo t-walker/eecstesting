@@ -5,10 +5,20 @@ class UsertestsController < ApplicationController
 
   def index
     @usertests = Usertest.last(5)
-    @testversions = Testversion.last(5)
+    @testversions = Testversion.order('testversions.isopen DESC').last(5)
     respond_to do |format|
       format.html
       format.csv { send_data @usertests.to_csv}
+    end
+  end
+
+  def showtest
+    @student = User.find_by_studentid(params[:studentid])
+    puts "\n\n\n\n" + params[:studentid] + "\n\n\n"
+    @usertest = @student.usertests.first
+    @responses = @usertest.responses
+    respond_to do |format|
+      format.html { render partial: "showtest"}
     end
   end
 
@@ -69,16 +79,17 @@ private
     correct = 0
     @usertest.responses.each do |r|
       @question = Question.find_by_id(r.question_id)
-      if r.response_data == @question.correct
+      if r.response_data.strip.downcase == @question.correct.strip.downcase
         r.correct = true
         correct += 1
-      elsif @question.question_type == "shortans" || @question.question_type == "longans"
+      elsif @question.question_type == "longans"
         correct += 1
       else
         r.correct = false
       end
     end
-    @usertest.score = correct
+
+    @usertest.score = ((correct.to_f / (@usertest.responses.size).to_f) * 100)
   end
 
   def set_usertest

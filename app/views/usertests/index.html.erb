@@ -29,7 +29,10 @@
     <div class="panel panel-default">
       <div class="panel-heading"><h3 class="panel-title">Test Scores</small></h3></div>
       <div class="panel-body">
-        <%= column_chart Usertest.group(:score).count %>
+        <%= column_chart Usertest.group(:score).count, {library: {legend: 'none',
+                                                                         titlePosition: 'none',
+                                                                         hAxis: {title: "Test Scores"},
+                                                                         vAxis: {title: "# of Users"}}, discrete: true} %>
       </div>
     </div>
     <div class="panel panel-default">
@@ -55,13 +58,13 @@
   </div>
   <div class="col-md-6">
     <div class="panel panel-default">
-      <div class="panel-heading"><h3 class="panel-title">Test Submissions <small>Five Most Recent</small></h3></div>
+      <div class="panel-heading"><h3 class="panel-title">Test Versions <small>Five Most Recent</small></h3></div>
       <div class="panel-body">
         <%= render partial: "testversions/index", locals: { testversions: @testversions }  %>
       </div>
     </div>
     <div class="panel panel-default">
-      <div class="panel-heading"><h3 class="panel-title">Test Versions <small>Five Most Recent</small></h3></div>
+      <div class="panel-heading"><h3 class="panel-title">Test Submissions <small>Five Most Recent</small></h3></div>
       <div class="panel-body">
         <table class="table">
           <tr>

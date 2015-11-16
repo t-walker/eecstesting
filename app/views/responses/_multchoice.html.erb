@@ -1,8 +1,6 @@
-<table class="table">
-  <td><%= response.radio_button :response_data, question.possible1 %> <%= question.possible1 %></td>
-  <td><%= response.radio_button :response_data, question.possible2 %> <%= question.possible2 %></td>
-  </tr>
-  <tr>
-  <td><%= response.radio_button :response_data, question.possible3 %> <%= question.possible3 %></td>
-  <td><%= response.radio_button :response_data, question.possible4 %> <%= question.possible4 %></td>
-</table>
+<div class="btn-group-vertical" data-toggle="buttons">
+  <label class="btn btn-primary"><%= response.radio_button :response_data, question.possible1 %> <%= question.possible1 %></label>
+  <label class="btn btn-primary"><%= response.radio_button :response_data, question.possible2 %> <%= question.possible2 %></label>
+  <label class="btn btn-primary"><%= response.radio_button :response_data, question.possible3 %> <%= question.possible3 %></label>
+  <label class="btn btn-primary"><%= response.radio_button :response_data, question.possible4 %> <%= question.possible4 %></label>
+</div>

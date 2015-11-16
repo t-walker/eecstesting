@@ -1,11 +1,14 @@
 <% content_for :page_javascript do %>
-<script type="text/javascript">
-$(function() {
-  $('#datepicker0').datepicker()
-  $('#datepicker1').datepicker();
-
-});
-</script>
+  <script type="text/javascript">
+  $(function() {
+    $('#datepicker0').datepicker()
+    $('#datepicker1').datepicker();
+  });
+  $(function() {
+      $( "#sortable" ).sortable();
+      $( "#sortable" ).disableSelection();
+    });
+  </script>
 <% end %>
 <div class="row">
   <div class="col-md-4">
@@ -13,55 +16,74 @@ $(function() {
   </div>
 </div>
 <div class="row">
+<%= form_for(@testversion) do |f|  %>
   <div class="col-md-4">
-    <div class="form-horizontal">
-      <%= form_for(@testversion) do |f|  %>
-        <div class="form-group">
-          <%= f.label :title, style: "font-size: medium" %>
-          <%= f.text_field :title, class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :startdate, style: "font-size: medium" %>
-          <%= f.text_field :startdate, class: "form-control", id: "datepicker0" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :endate, style: "font-size: medium" %>
-          <%= f.text_field :enddate, class: "form-control", id: "datepicker1"%>
-        </div>
-        <% if !(Usertest.where(testversion_id: @testversion.id).count != 0 && @testversion.active?) %>
+    <div class="form-group">
+      <%= f.label :title, style: "font-size: medium" %>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <div class="form-group">
+      <h4>Start Date</h4>
+      <%= f.text_field :startdate, class: "form-control", id: "datepicker0" %>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <h4>End Date</h4>
+      <%= f.text_field :enddate, class: "form-control", id: "datepicker1"%>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <% if !(Usertest.where(testversion_id: @testversion.id).count != 0 && @testversion.active?) %>
+      <div class="form-group">
+        <h4>Test Questions<br /><small>Select questions you would like to appear on the exam</small></h4>
+      </div>
+      <% for question in @questions %>
           <div class="form-group">
-            <h4>Test Questions:</h4>
+              <label><span style="font-size: medium;"><%= check_box_tag "testversion[question_ids][]", question.id, @testversion.questions.include?(question) %>
+              <%= question.prompt %>?</span></label>
           </div>
+      <% end %>
+    <% else %>
+      <div class="panel">
+        <div class="panel-body">
+          <h4>Questions (locked)</h4>
           <% for question in @questions %>
-              <div class="form-group">
-                  <label><span style="font-size: medium;"><%= check_box_tag "testversion[question_ids][]", question.id, @testversion.questions.include?(question) %>
-                  <%= question.prompt %>?</span></label>
-              </div>
-          <% end %>
-        <% else %>
-          <div class="panel">
-            <div class="panel-body">
-              <h4>Questions (locked)</h4>
-              <% for question in @questions %>
-                <p><%= question.prompt %>?</p>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-        <div class="form-group">
-          <% if Testversion.active_tests? && !@testversion.active? %>
-              <%= f.label :isopen, "Open?" %> <small>Only one active test allowed at a time.</small><br />
-              <%= f.select :isopen, @options, {:selected => 0}, {class: "form-control", disabled: true} %>
-              <%= f.hidden_field :isopen, value: 0 %>
-          <% else %>
-              <%= f.label :isopen, "Open?" %>
-              <%= f.select :isopen, @options, {}, {class: "form-control"} %>
+            <p><%= question.prompt %>?</p>
           <% end %>
         </div>
-        <div class="form-group">
-          <%= f.submit "Submit", class: "btn btn-success" %>
-        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    <div class="form-group">
+      <% if Testversion.active_tests? && !@testversion.active? %>
+        <h4>Open for Submissions?</h4><small>Only one active test allowed at a time.</small><br />
+        <%= f.select :isopen, @options, {:selected => 0}, {class: "form-control", disabled: true} %>
+        <%= f.hidden_field :isopen, value: 0 %>
+      <% elsif @testversion.active? %>
+        <h4>Open for Submissions?</h4>
+        <%= f.select :isopen, @options, {:selected => 1}, {class: "form-control"} %>
+      <% else %>
+        <h4>Open for Submissions?</h4>
+        <%= f.select :isopen, @options, {:selected => 0}, {class: "form-control"} %>
       <% end %>
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-2">
+    <div class="form-group">
+      <%= f.submit "Submit", class: "btn btn-success" %>
+    </div>
+  </div>
+</div>
+  <% end %>

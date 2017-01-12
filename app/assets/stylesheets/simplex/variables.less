@@ -14,21 +14,26 @@
 @gray-light:             #808080;
 @gray-lighter:           #ddd;
 
-@brand-primary:         #D9230F;
+@brand-primary:         @wsucrimson;
 @brand-success:         #469408;
-@brand-info:            #029ACF;
-@brand-warning:         #9B479F;
-@brand-danger:          #D9831F;
+@brand-info:            lighten(@wsublue, 10%);
+@brand-warning:         lighten(@wsuorange, 10%);
+@brand-danger:          lighten(@wsucrimson, 10%);
 
+@wsucrimson:            #981e32;
+@wsugray:               #5e6a71;
+@wsuorange:             #b67233;
+@wsublue:               #4f868e;
+@wsuyellow:             #c69214;
 
 //== Scaffolding
 //
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-@body-bg:               #FCFCFC;
+@body-bg:               lighten(@wsugray, 50%);
 //** Global text color on `<body>`.
-@text-color:            @gray;
+@text-color:            darken(@gray, 10%);
 
 //** Global textual link color.
 @link-color:            @brand-primary;
@@ -364,7 +369,7 @@
 @navbar-padding-vertical:          ((@navbar-height - @line-height-computed) / 2);
 @navbar-collapse-max-height:       340px;
 
-@navbar-default-color:             @gray;
+@navbar-default-color:             darken(@gray, 20%);
 @navbar-default-bg:                #fff;
 @navbar-default-border:            darken(@navbar-default-bg, 6.5%);
 

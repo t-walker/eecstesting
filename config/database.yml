@@ -1,6 +1,21 @@
-development:
-  adapter: mysql2
+default: &default
+  adapter: postgresql
+  encoding: unicode
   host: localhost
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 5
   username: eecstest
   password: password
-  database: eecstest
+
+development:
+  <<: *default
+  database: "eecstest"
+
+test:
+  <<: *default
+  database: "test_database_name"
+
+production:
+  <<: *default
+  database: "production_database_name"

@@ -13,13 +13,16 @@
 
 ActiveRecord::Schema.define(version: 20151030195840) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "notifications", force: :cascade do |t|
-    t.integer  "user_id",      limit: 4
+    t.integer  "user_id"
     t.string   "model",        limit: 255
     t.string   "notification", limit: 255
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
-    t.integer  "model_id",     limit: 4
+    t.integer  "model_id"
   end
 
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
@@ -34,25 +37,25 @@ ActiveRecord::Schema.define(version: 20151030195840) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.string   "question_type", limit: 255
-    t.integer  "user_id",       limit: 4
+    t.integer  "user_id"
     t.string   "detail",        limit: 255
   end
 
   add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree
 
   create_table "questions_testversions", id: false, force: :cascade do |t|
-    t.integer "testversion_id", limit: 4
-    t.integer "question_id",    limit: 4
+    t.integer "testversion_id"
+    t.integer "question_id"
   end
 
   create_table "responses", force: :cascade do |t|
-    t.integer  "user_id",       limit: 4
-    t.integer  "usertest_id",   limit: 4
+    t.integer  "user_id"
+    t.integer  "usertest_id"
     t.string   "response_data", limit: 255
     t.boolean  "correct"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-    t.integer  "question_id",   limit: 4
+    t.integer  "question_id"
   end
 
   add_index "responses", ["question_id"], name: "index_responses_on_question_id", using: :btree
@@ -66,7 +69,7 @@ ActiveRecord::Schema.define(version: 20151030195840) do
     t.boolean  "isopen"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.integer  "user_id",    limit: 4
+    t.integer  "user_id"
   end
 
   add_index "testversions", ["user_id"], name: "index_testversions_on_user_id", using: :btree
@@ -77,7 +80,7 @@ ActiveRecord::Schema.define(version: 20151030195840) do
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
@@ -94,11 +97,11 @@ ActiveRecord::Schema.define(version: 20151030195840) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "usertests", force: :cascade do |t|
-    t.integer  "user_id",        limit: 4
-    t.integer  "score",          limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.integer  "testversion_id", limit: 4
+    t.integer  "user_id"
+    t.integer  "score"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "testversion_id"
   end
 
   add_index "usertests", ["testversion_id"], name: "index_usertests_on_testversion_id", using: :btree

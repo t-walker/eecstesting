@@ -12,20 +12,18 @@
             <div class="panel-body">
                 <table class="table">
                     <tr>
-                        <th>
+                        <th class="col-md-2">
                             <h4>Name</h4>
                         </th>
-                        <th>
+                        <th class="col-md-4">
                             <h4>E-mail</h4>
                         </th>
                         <% if current_user.advisor? || current_user.admin? %>
-                        <th>
-                            <h4>Change Advisor</h4>
+                        <th class="col-md-1">
                         </th>
                         <% end %>
                         <% if current_user.admin? %>
-                        <th>
-                            <h4>Change Admin</h4>
+                        <th class="col-md-1">
                         </th>
                         <% end %>
                     </tr>

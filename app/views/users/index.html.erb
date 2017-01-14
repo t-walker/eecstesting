@@ -1,77 +1,92 @@
 <div class="row">
-  <div class="col-md-12">
-    <h1>User Dashboard</h1>
-  </div>
+    <div class="col-md-12">
+        <h1>User Dashboard</h1>
+    </div>
 </div>
 <div class="row">
-  <div class="col-md-12">
-    <div class="panel panel-default">
-      <div class="panel-heading"><h3 class="panel-title">All Registered Users</h3></div>
-      <div class="panel-body">
-        <table class="table">
-        <tr>
-        <th><h4>Name</h4></th>
-        <th><h4>E-mail</h4></th>
-        <% if current_user.advisor? || current_user.admin? %>
-          <th><h4>Change Advisor</h4></th>
-        <% end %>
-        <% if current_user.admin? %>
-          <th><h4>Change Admin</h4></th>
-        <% end %>
-        </tr>
-        <% @users.each do |u| %>
-        <tr>
-        <td><h5><%= u.firstname %> <%= u.lastname %></h5></td>
-        <td><h5><%= u.email %></h5></td>
-        <% if !u.admin? && !u.advisor? %>
-        <td><%= button_to "Make Advisor", make_advisor_path(id: u.id) , method: :put, class: "btn btn-primary btn-block" %></td>
-        <% elsif !u.advisor? && u.admin? %>
-        <td><%= button_to "Make Advisor", make_admin_path(id: u.id) , method: :put, class: "btn btn-primary btn-block", disabled: true%></td>
-        <% else %>
-        <td><%= button_to "Remove Advisor", remove_advisor_path(id: u.id) , method: :put, class: "btn btn-danger btn-block" %></td>
-        <% end %>
-        <% if current_user.admin? %>
-          <% if !u.admin? && !u.advisor? %>
-          <td><%= button_to "Make Admin", make_admin_path(id: u.id) , method: :put, class: "btn btn-primary btn-block" %></td>
-          <% elsif !u.admin? && u.advisor? %>
-          <td><%= button_to "Make Admin", make_admin_path(id: u.id) , method: :put, class: "btn btn-primary btn-block", disabled: true%></td>
-          <% else %>
-          <td><%= button_to "Remove Admin", remove_admin_path(id: u.id) , method: :put, class: "btn btn-danger btn-block" %></td>
-          <% end %>
-        <% end %>
-        <% end %>
-        </table>
-        <%= link_to 'Download User data as CSV', users_path(format: :csv), class: "btn btn-info" %>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-6">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Users Registered by Date</h3>
-      </div>
-      <div class="panel-body">
-        <%= area_chart User.group_by_day(:created_at, format: "%b %d %Y").count, {library: {legend: 'none',
-                                                                         titlePosition: 'none',
-                                                                         hAxis: {title: "Date"},
-                                                                         vAxis: {title: "# of Users Registered"}}, discrete: true} %>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Users Statistics</h3>
-      </div>
-      <div class="panel-body">
-        <div style="height: 290px; overlow: scroll;">
-          <h4>Number of Admins:  <%= User.where(role: "admin").count %></h4>
-          <h4>Number of Advisors:  <%= User.where(role: "advisor").count %></h4>
-          <h4>Number of Students:  <%= User.where(role: "student").count %></h4>
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">All Registered Users</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table">
+                    <tr>
+                        <th>
+                            <h4>Name</h4>
+                        </th>
+                        <th>
+                            <h4>E-mail</h4>
+                        </th>
+                        <% if current_user.advisor? || current_user.admin? %>
+                        <th>
+                            <h4>Change Advisor</h4>
+                        </th>
+                        <% end %>
+                        <% if current_user.admin? %>
+                        <th>
+                            <h4>Change Admin</h4>
+                        </th>
+                        <% end %>
+                    </tr>
+                    <% @users.each do |u| %>
+                    <tr>
+                        <td>
+                            <h5><%= u.firstname %>
+                                <%= u.lastname %></h5>
+                        </td>
+                        <td>
+                            <h5><%= u.email %></h5>
+                        </td>
+                        <% if !u.admin? && !u.advisor? %>
+                        <td><%= button_to "Make Advisor", make_advisor_path(id: u.id) , method: :put, class: "btn btn-primary btn-block" %></td>
+                        <% elsif !u.advisor? && u.admin? %>
+                        <td><%= button_to "Make Advisor", make_admin_path(id: u.id) , method: :put, class: "btn btn-primary btn-block", disabled: true%></td>
+                    <% else %>
+                        <td><%= button_to "Remove Advisor", remove_advisor_path(id: u.id) , method: :put, class: "btn btn-danger btn-block" %></td>
+                        <% end %>
+                        <% if current_user.admin? %>
+                        <% if !u.admin? && !u.advisor? %>
+                        <td><%= button_to "Make Admin", make_admin_path(id: u.id) , method: :put, class: "btn btn-primary btn-block" %></td>
+                        <% elsif !u.admin? && u.advisor? %>
+                        <td><%= button_to "Make Admin", make_admin_path(id: u.id) , method: :put, class: "btn btn-primary btn-block", disabled: true%></td>
+                    <% else %>
+                        <td><%= button_to "Remove Admin", remove_admin_path(id: u.id) , method: :put, class: "btn btn-danger btn-block" %></td>
+                        <% end %>
+                        <% end %>
+                        <% end %>
+                    </table>
+                    <%= link_to 'Download User data as CSV', users_path(format: :csv), class: "btn btn-info" %>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-</div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Users Registered by Date</h3>
+                </div>
+                <div class="panel-body">
+                    <%= area_chart User.group_by_day(:created_at, format: "%b %d %Y").count, {library: {legend: 'none', titlePosition: 'none', hAxis: {title: "Date"}, vAxis: {title: "# of Users Registered"}}, discrete: true} %>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Users Statistics</h3>
+                </div>
+                <div class="panel-body">
+                    <div style="height: 290px; overlow: scroll;">
+                        <h4>Number of Admins:
+                            <%= User.where(role: "admin").count %></h4>
+                        <h4>Number of Advisors:
+                            <%= User.where(role: "advisor").count %></h4>
+                        <h4>Number of Students:
+                            <%= User.where(role: "student").count %></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
